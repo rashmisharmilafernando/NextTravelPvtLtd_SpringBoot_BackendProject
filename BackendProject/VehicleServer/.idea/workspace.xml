@@ -7,6 +7,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2WwIFLTps49PLBVIDNjBnGM2Xzp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -17,7 +23,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/2nd SEMESTER/Spring Final Project/SpringBootFinalProject/BackendProject/VehicleServer",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "E:/2nd SEMESTER/Spring Final Project/SpringBootFinalProject_Backend/BackendProject/VehicleServer",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -30,6 +37,7 @@
       <option name="presentableId" value="Default" />
       <updated>1697637110624</updated>
       <workItem from="1697637112074" duration="82000" />
+      <workItem from="1697640156318" duration="18000" />
     </task>
     <servers />
   </component>
