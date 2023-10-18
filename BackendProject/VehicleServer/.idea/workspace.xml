@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="480e9fd1-a681-4e1e-a99c-b0608a84771f" name="Changes" comment="" />
+    <list default="true" id="480e9fd1-a681-4e1e-a99c-b0608a84771f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/src/main/java/lk/ijse/vehicleserver/VehicleServerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/src/main/java/lk/ijse/vehicleserver/controller/VehicleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/src/main/java/lk/ijse/vehicleserver/dao/vehcielDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/src/main/java/lk/ijse/vehicleserver/dto/VehicleDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/src/main/java/lk/ijse/vehicleserver/entity/VehicleEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/src/main/java/lk/ijse/vehicleserver/service/VehicleServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/src/main/java/lk/ijse/vehicleserver/util/DataTypeConvertor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VehicleServer/src/test/java/lk/ijse/vehicleserver/VehicleServerApplicationTests.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,16 +38,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "E:/2nd SEMESTER/Spring Final Project/SpringBootFinalProject_Backend/BackendProject/VehicleServer",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/2nd SEMESTER/Spring Final Project/SpringBootFinalProject_Backend/BackendProject/VehicleServer&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -38,6 +58,7 @@
       <updated>1697637110624</updated>
       <workItem from="1697637112074" duration="82000" />
       <workItem from="1697640156318" duration="18000" />
+      <workItem from="1697644629656" duration="104000" />
     </task>
     <servers />
   </component>
