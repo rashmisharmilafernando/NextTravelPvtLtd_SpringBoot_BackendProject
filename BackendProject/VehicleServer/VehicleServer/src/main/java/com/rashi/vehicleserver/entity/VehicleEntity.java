@@ -1,8 +1,7 @@
 package com.rashi.vehicleserver.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,24 +12,40 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class VehicleEntity {
+public class VehicleEntity implements SuperEntity{
     @Id
-        private String vehicleId;
-        private String vehicleBrand;
-        private String category;
-        private String fuelType;
-        private boolean isHybrid;
-        private double fuelUsage;
-        private String frontView;
-        private String rearView;
-        private String sideView;
-        private String otherSideView;
-        private int seatCapacity;
-        private String vehicleType;
-        private String transmission;
-        private String driverName;
-        private String driverNumber;
-        private String driverLicense;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String vehicleId;
+    @Column(nullable = false)
+    private String vehicleBrand;
+    @Column(nullable = false)
+    private String category;
+    @Column(nullable = false)
+    private String fuelType;
+    @Column(nullable = false)
+    private boolean isHybrid;
+    @Column(nullable = false)
+    private double fuelUsage;
+    @Column(nullable = false)
+    private String frontView;
+    @Column(nullable = false)
+    private String rearView;
+    @Column(nullable = false)
+    private String sideView;
+    @Column(nullable = false)
+    private String otherSideView;
+    @Column(nullable = false)
+    private int seatCapacity;
+    @Column(nullable = false)
+    private String vehicleType;
+    @Column(nullable = false)
+    private String transmission;
+    @Column(nullable = false)
+    private String driverName;
+    @Column(nullable = false)
+    private String driverNumber;
+    @Column(nullable = false)
+    private String driverLicense;
 
 
 }

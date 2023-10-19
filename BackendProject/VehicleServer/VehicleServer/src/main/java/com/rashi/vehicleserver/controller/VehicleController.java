@@ -11,12 +11,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("api/v1/vehicle")
+@RequestMapping("/vehicle")
 public class VehicleController {
 
 
     private  final VehicleService vehicleService;
-
 
     public VehicleController(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
