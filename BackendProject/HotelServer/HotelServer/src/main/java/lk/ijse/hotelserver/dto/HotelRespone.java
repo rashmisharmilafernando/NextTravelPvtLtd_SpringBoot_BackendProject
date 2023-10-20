@@ -3,13 +3,11 @@ package lk.ijse.hotelserver.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class HotelDTO {
+@NoArgsConstructor
+@Data
+public class HotelRespone {
     private String hotelId;
     private String hotelLocation;
     private String hotelName;
@@ -23,6 +21,5 @@ public class HotelDTO {
     private  String remarks;
     private  double hotelFee;
     private String email;
-    private String image;
-
+    private byte[] image;
 }

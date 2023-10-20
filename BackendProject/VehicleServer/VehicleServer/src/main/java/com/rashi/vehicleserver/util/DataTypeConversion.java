@@ -26,8 +26,8 @@ public class DataTypeConversion {
         return modelMapper.map(vehicleDTO, VehicleEntity.class);
     }
 
-    public List<VehicleDTO> packageEntityListToPackageDTOList(List<VehicleEntity> packages) {
-        return modelMapper.map(packages, new TypeToken<List<VehicleDTO>>() {
+    public List<VehicleDTO> vehicleDTOListTovehicleDTOList(List<VehicleEntity> vehicleEntityList) {
+        return modelMapper.map(vehicleEntityList, new TypeToken<List<VehicleDTO>>() {
         }.getType());
     }
 }

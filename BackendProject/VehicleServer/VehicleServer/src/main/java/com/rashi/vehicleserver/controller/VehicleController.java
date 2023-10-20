@@ -96,7 +96,22 @@ public class VehicleController {
     public ResponseEntity<List<VehicleResponse>>getAllVehicle(){
         List<VehicleResponse> vehicleResponses=vehicleService.getAllVehicle().stream().map(e ->
                 new VehicleResponse(
-
+                        e.getVehicleId(),
+                        e.getVehicleBrand(),
+                        e.getCategory(),
+                        e.getFuelType(),
+                        e.isHybrid(),
+                        e.getFuelUsage(),
+                        Base64.getDecoder().decode(e.getFrontView()),
+                        Base64.getDecoder().decode(e.getRearView()),
+                        Base64.getDecoder().decode(e.getSideView()),
+                        Base64.getDecoder().decode(e.getOtherSideView()),
+                        e.getSeatCapacity(),
+                        e.getVehicleType(),
+                        e.getTransmission(),
+                        e.getDriverName(),
+                        e.getDriverNumber(),
+                        Base64.getDecoder().decode(e.getDriverLicense())
                 )
         ).collect(Collectors.toList());
         return new ResponseEntity<>(vehicleResponses,HttpStatus.OK);

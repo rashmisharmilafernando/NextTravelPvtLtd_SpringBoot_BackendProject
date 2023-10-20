@@ -1,8 +1,6 @@
 package com.rashi.vehicleserver.service;
 
 import com.rashi.vehicleserver.dto.VehicleDTO;
-
-import java.util.Arrays;
 import java.util.List;
 
 public interface VehicleService {

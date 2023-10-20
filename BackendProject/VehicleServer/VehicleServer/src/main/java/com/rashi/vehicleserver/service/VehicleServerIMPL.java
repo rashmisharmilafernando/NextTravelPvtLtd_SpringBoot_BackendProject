@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +39,7 @@ public class VehicleServerIMPL implements VehicleService{
     }
 
     @Override
-    public List<VehicleDTO> getAllVehicle() {
+    public List<VehicleDTO>getAllVehicle() {
         return vehicleDAO.findAll().stream().map(vehicle->dataTypeConversion.getVehicleDTO(vehicle)).collect(Collectors.toList());
     }
 

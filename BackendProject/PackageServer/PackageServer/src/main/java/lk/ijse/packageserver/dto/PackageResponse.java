@@ -3,13 +3,11 @@ package lk.ijse.packageserver.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class PackageDTO {
+@NoArgsConstructor
+@Data
+public class PackageResponse {
     private String packageId;
     private String packageCategory;
     private int nightCount;
