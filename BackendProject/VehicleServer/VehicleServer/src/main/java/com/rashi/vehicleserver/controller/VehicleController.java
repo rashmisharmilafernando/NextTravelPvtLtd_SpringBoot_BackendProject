@@ -125,11 +125,17 @@ public class VehicleController {
     public @ResponseBody CustomDTO vehicleGenerate(){
         return vehicleService.vehicleIdGenerate();
     }
-
+    //------- Search Vehicle --------------------------
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/searchVehicle",params = {"vehicleId"})
     public VehicleDTO searchVehicleId(String vehicle_Id){
         return vehicleService.searchVehicleId(vehicle_Id);
+    }
+    //-------Vehicle-Count------------------------------
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/vehiclesCount")
+    public @ResponseBody CustomDTO getSumVehicle(){
+        return vehicleService.getAllVehicleCount();
     }
 }
 

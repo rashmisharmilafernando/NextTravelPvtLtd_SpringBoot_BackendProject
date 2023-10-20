@@ -4,7 +4,7 @@ import com.rashi.vehicleserver.dao.VehicleDAO;
 import com.rashi.vehicleserver.dto.CustomDTO;
 import com.rashi.vehicleserver.dto.VehicleDTO;
 import com.rashi.vehicleserver.entity.VehicleEntity;
-import com.rashi.vehicleserver.util.DataTypeConversion;
+import com.rashi.vehicleserver.util.DataConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,21 +17,21 @@ import java.util.stream.Collectors;
 public class VehicleServerIMPL implements VehicleService{
 
     @Autowired
-    private DataTypeConversion dataTypeConversion;
+    private DataConvertor dataTypeConvertor;
 
     @Autowired
     private VehicleDAO vehicleDAO;
 
     @Override
     public VehicleDTO saveVehicle(VehicleDTO vehicleDTO) {
-      VehicleEntity vehicleEntity=dataTypeConversion.getVehicleEntity(vehicleDTO);
+      VehicleEntity vehicleEntity=dataTypeConvertor.getVehicleEntity(vehicleDTO);
         vehicleDAO.save(vehicleEntity);
         return vehicleDTO;
     }
 
     @Override
     public void updateVehicle(String veicleId, VehicleDTO vehicleDTO) {
-        vehicleDAO.save(dataTypeConversion.getVehicleEntity(vehicleDTO));
+        vehicleDAO.save(dataTypeConvertor.getVehicleEntity(vehicleDTO));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class VehicleServerIMPL implements VehicleService{
 
     @Override
     public List<VehicleDTO>getAllVehicle() {
-        return vehicleDAO.findAll().stream().map(vehicle->dataTypeConversion.getVehicleDTO(vehicle)).collect(Collectors.toList());
+        return vehicleDAO.findAll().stream().map(vehicle->dataTypeConvertor.getVehicleDTO(vehicle)).collect(Collectors.toList());
     }
 
     @Override
@@ -55,8 +55,13 @@ public class VehicleServerIMPL implements VehicleService{
             throw new RuntimeException("Wrong ID...!");
         }
         VehicleEntity vehicleEntity = vehicleDAO.findById(vehicleId).get();
-        return dataTypeConversion.getVehicleDTO(vehicleEntity);
+        return dataTypeConvertor.getVehicleDTO(vehicleEntity);
 
+    }
+
+    @Override
+    public CustomDTO getAllVehicleCount() {
+        return new CustomDTO(vehicleDAO.getAllVehicleCount());
     }
 
 

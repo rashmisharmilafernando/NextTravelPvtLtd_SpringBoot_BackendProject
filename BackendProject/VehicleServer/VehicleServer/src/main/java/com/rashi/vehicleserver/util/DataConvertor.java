@@ -10,11 +10,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class DataTypeConversion {
+public class DataConvertor {
 
     private final ModelMapper modelMapper;
 
-    public DataTypeConversion(ModelMapper modelMapper) {
+
+    public DataConvertor(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
 
@@ -30,4 +31,6 @@ public class DataTypeConversion {
         return modelMapper.map(vehicleEntityList, new TypeToken<List<VehicleDTO>>() {
         }.getType());
     }
+
+
 }

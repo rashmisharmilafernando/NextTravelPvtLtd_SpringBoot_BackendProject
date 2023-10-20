@@ -17,6 +17,8 @@ public interface VehicleService {
 
     VehicleDTO searchVehicleId(String vehicleId);
 
+    CustomDTO getAllVehicleCount();
+
 
     /*void update(VehicleDTO vehicleDTO);*/
 }
