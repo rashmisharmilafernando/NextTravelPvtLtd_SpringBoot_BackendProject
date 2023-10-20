@@ -1,16 +1,14 @@
 package com.rashi.vehicleserver.dto;
 
-import com.rashi.vehicleserver.entity.VehicleEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class VehicleDTO {
+@NoArgsConstructor
+@Data
+public class VehicleResponse {
     private String vehicleId;
     private String vehicleBrand;
     private String category;
@@ -27,4 +25,6 @@ public class VehicleDTO {
     private String driverName;
     private String driverNumber;
     private String driverLicense;
+
+
 }

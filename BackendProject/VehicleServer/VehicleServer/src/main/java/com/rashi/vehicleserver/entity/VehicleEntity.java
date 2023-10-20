@@ -26,13 +26,13 @@ public class VehicleEntity implements SuperEntity{
     private boolean isHybrid;
     @Column(nullable = false)
     private double fuelUsage;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String frontView;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String rearView;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String sideView;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String otherSideView;
     @Column(nullable = false)
     private int seatCapacity;
@@ -44,8 +44,6 @@ public class VehicleEntity implements SuperEntity{
     private String driverName;
     @Column(nullable = false)
     private String driverNumber;
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String driverLicense;
-
-
 }

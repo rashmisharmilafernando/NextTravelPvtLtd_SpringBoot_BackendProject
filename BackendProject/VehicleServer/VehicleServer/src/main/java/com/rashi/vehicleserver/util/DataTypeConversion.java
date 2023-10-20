@@ -4,7 +4,10 @@ package com.rashi.vehicleserver.util;
 import com.rashi.vehicleserver.dto.VehicleDTO;
 import com.rashi.vehicleserver.entity.VehicleEntity;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class DataTypeConversion {
@@ -15,11 +18,16 @@ public class DataTypeConversion {
         this.modelMapper = modelMapper;
     }
 
-    public VehicleDTO getVehicleDTO(VehicleEntity vehicleEntity){
+    public VehicleDTO getVehicleDTO(VehicleEntity vehicleEntity) {
         return modelMapper.map(vehicleEntity, VehicleDTO.class);
     }
 
-    public VehicleEntity getVehicleEntity(VehicleDTO vehicleDTO){
+    public VehicleEntity getVehicleEntity(VehicleDTO vehicleDTO) {
         return modelMapper.map(vehicleDTO, VehicleEntity.class);
+    }
+
+    public List<VehicleDTO> packageEntityListToPackageDTOList(List<VehicleEntity> packages) {
+        return modelMapper.map(packages, new TypeToken<List<VehicleDTO>>() {
+        }.getType());
     }
 }
