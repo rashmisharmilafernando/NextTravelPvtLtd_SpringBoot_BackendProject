@@ -61,7 +61,7 @@ public class HotelController {
                     remarks,
                     hotelFee,
                     email,
-                    hotelImage
+                    hotel_Image
             );
             return hotelService.saveHotel(hotelDTO);
         } catch (Exception e) {

@@ -1,8 +1,9 @@
-package lk.ijse.packageserver.server;
+package lk.ijse.packageserver.server.impl;
 
 import lk.ijse.packageserver.dao.PackageDAO;
 import lk.ijse.packageserver.dto.PackageDTO;
 import lk.ijse.packageserver.enetity.PackageEntity;
+import lk.ijse.packageserver.server.PackageService;
 import lk.ijse.packageserver.util.DataConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class PackageServiceIMPL implements PackageService {
 
     @Override
     public PackageDTO savePackage(PackageDTO packageDTO) {
-        PackageEntity packageEntity=dataConvertor.getPackageEntity(packageDTO);
+        PackageEntity packageEntity = dataConvertor.getPackageEntity(packageDTO);
         packageDAO.save(packageEntity);
         return packageDTO;
     }
@@ -42,6 +43,7 @@ public class PackageServiceIMPL implements PackageService {
 
     @Override
     public List<PackageDTO> getAllPackage() {
-        return packageDAO.findAll().stream().map(packageEntity->dataConvertor.getPackageDTO(packageEntity)).collect(Collectors.toList());
+        return dataConvertor.pacackageDTOtoPackageDTOList(packageDAO.findAll());
     }
+
 }
