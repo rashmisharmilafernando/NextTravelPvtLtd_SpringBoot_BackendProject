@@ -1,6 +1,7 @@
 package com.rashi.vehicleserver.service;
 
 import com.rashi.vehicleserver.dao.VehicleDAO;
+import com.rashi.vehicleserver.dto.CustomDTO;
 import com.rashi.vehicleserver.dto.VehicleDTO;
 import com.rashi.vehicleserver.entity.VehicleEntity;
 import com.rashi.vehicleserver.util.DataTypeConversion;
@@ -41,6 +42,21 @@ public class VehicleServerIMPL implements VehicleService{
     @Override
     public List<VehicleDTO>getAllVehicle() {
         return vehicleDAO.findAll().stream().map(vehicle->dataTypeConversion.getVehicleDTO(vehicle)).collect(Collectors.toList());
+    }
+
+    @Override
+    public CustomDTO vehicleIdGenerate() {
+        return new CustomDTO(vehicleDAO.getLastIndex());
+    }
+
+    @Override
+    public VehicleDTO searchVehicleId(String vehicleId) {
+        if (!vehicleDAO.existsById(vehicleId)){
+            throw new RuntimeException("Wrong ID...!");
+        }
+        VehicleEntity vehicleEntity = vehicleDAO.findById(vehicleId).get();
+        return dataTypeConversion.getVehicleDTO(vehicleEntity);
+
     }
 
 

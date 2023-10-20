@@ -1,5 +1,6 @@
 package com.rashi.vehicleserver.controller;
 
+import com.rashi.vehicleserver.dto.CustomDTO;
 import com.rashi.vehicleserver.dto.VehicleDTO;
 import com.rashi.vehicleserver.dto.VehicleResponse;
 import com.rashi.vehicleserver.service.VehicleService;
@@ -82,17 +83,18 @@ public class VehicleController {
 
 
     //Update
-    @PutMapping("vehicleId")
+    @PutMapping("/update")
     public void UpdateVehicle(@PathVariable String veicleId,@RequestBody VehicleDTO vehicleDTO){
         vehicleService.updateVehicle(veicleId,vehicleDTO);
     }
-
+    //Delete
     @DeleteMapping("id")
     public void deleteEmployee(String id){
         vehicleService.deleteVehicle(id);
     }
 
-    @GetMapping
+    //Get All
+    @GetMapping(path = "/loadAllVehicle")
     public ResponseEntity<List<VehicleResponse>>getAllVehicle(){
         List<VehicleResponse> vehicleResponses=vehicleService.getAllVehicle().stream().map(e ->
                 new VehicleResponse(
@@ -116,5 +118,19 @@ public class VehicleController {
         ).collect(Collectors.toList());
         return new ResponseEntity<>(vehicleResponses,HttpStatus.OK);
     }
+
+    //------- Auto Generate id--------------------------
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path="/autoGenerateId")
+    public @ResponseBody CustomDTO vehicleGenerate(){
+        return vehicleService.vehicleIdGenerate();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/searchVehicle",params = {"vehicleId"})
+    public VehicleDTO searchVehicleId(String vehicle_Id){
+        return vehicleService.searchVehicleId(vehicle_Id);
+    }
 }
+
 

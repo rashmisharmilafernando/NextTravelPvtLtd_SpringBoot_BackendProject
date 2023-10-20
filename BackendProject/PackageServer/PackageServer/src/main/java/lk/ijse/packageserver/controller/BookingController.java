@@ -92,7 +92,16 @@ public class BookingController {
     public ResponseEntity<List<BookingResponse>>getAllBooking(){
         List<BookingResponse>bookingResponses=bookingService.getAllBooking().stream().map(e ->
                 new BookingResponse(
-
+                        e.getBookingId(),
+                        e.getPackageId(),
+                        e.getStartDate(),
+                        e.getEndDate(),
+                        e.getNightCount(),
+                        e.getDayCount(),
+                        e.getAdultsCount(),
+                        e.getChildrenCount(),
+                        e.getFullAmount(),
+                        Base64.getDecoder().decode(e.getPaymentSlip())
                 )
         ).collect(Collectors.toList());
         return new ResponseEntity<>(bookingResponses,HttpStatus.OK);
