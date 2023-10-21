@@ -5,19 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dfd38ffc-b39c-45f1-a392-070b5101dc42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/dto/VehicleResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserServer/src/main/java/lk/ijse/userserver/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserServer/src/main/java/lk/ijse/userserver/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserServer/src/main/java/lk/ijse/userserver/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserServer/src/main/java/lk/ijse/userserver/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserServer/src/main/java/lk/ijse/userserver/service/UserServiceIMPL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/controller/VehicleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/controller/VehicleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/dto/VehicleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/dto/VehicleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/entity/VehicleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/entity/VehicleEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/service/VehicleServerIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/service/VehicleServerIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/service/VehicleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/service/VehicleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/util/DataTypeConversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VehicleServer/VehicleServer/src/main/java/com/rashi/vehicleserver/util/DataTypeConversion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -43,7 +47,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "E:/2nd SEMESTER/Spring Final Project/SpringBootFinalProject_Backend/BackendProject/PackageServer",
+    "last_opened_file_path": "E:/2nd SEMESTER/Spring Final Project/SpringBootFinalProject_Backend/BackendProject/UserServer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "0579eb4101d4ee07ec96dc1368256c59",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -65,6 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1697768392595</updated>
       <workItem from="1697768393852" duration="111000" />
+      <workItem from="1697849179915" duration="697000" />
     </task>
     <servers />
   </component>

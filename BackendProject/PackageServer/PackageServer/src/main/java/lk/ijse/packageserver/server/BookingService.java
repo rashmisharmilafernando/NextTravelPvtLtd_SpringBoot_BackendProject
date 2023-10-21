@@ -1,6 +1,7 @@
 package lk.ijse.packageserver.server;
 
 import lk.ijse.packageserver.dto.BookingDTO;
+import lk.ijse.packageserver.dto.CustomDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,4 +18,8 @@ public interface BookingService {
     void deleteBooking(String id);
 
     List<BookingDTO> getAllBooking();
+
+    CustomDTO generateBookingId();
+
+    CustomDTO getAllBookingCount();
 }

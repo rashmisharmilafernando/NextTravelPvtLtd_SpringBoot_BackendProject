@@ -2,6 +2,7 @@ package lk.ijse.packageserver.server.impl;
 
 import lk.ijse.packageserver.dao.BookingDAO;
 import lk.ijse.packageserver.dto.BookingDTO;
+import lk.ijse.packageserver.dto.CustomDTO;
 import lk.ijse.packageserver.enetity.BookingEntity;
 import lk.ijse.packageserver.server.BookingService;
 import lk.ijse.packageserver.util.DataConvertor;
@@ -40,5 +41,15 @@ public class BookingServiceIMPL implements BookingService {
     @Override
     public List<BookingDTO> getAllBooking() {
         return bookingDAO.findAll().stream().map(bookingEntity -> dataConvertor.getBookingDTO(bookingEntity)).collect(Collectors.toList());
+    }
+
+    @Override
+    public CustomDTO generateBookingId() {
+        return new CustomDTO(bookingDAO.getLastIndex());
+    }
+
+    @Override
+    public CustomDTO getAllBookingCount() {
+        return new CustomDTO(bookingDAO.getAllBookingCount());
     }
 }

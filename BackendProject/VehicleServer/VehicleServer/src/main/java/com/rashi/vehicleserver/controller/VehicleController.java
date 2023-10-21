@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -89,7 +90,7 @@ public class VehicleController {
     }
     //Delete
     @DeleteMapping("id")
-    public void deleteEmployee(String id){
+    public void deleteVehicle(String id){
         vehicleService.deleteVehicle(id);
     }
 
@@ -137,6 +138,14 @@ public class VehicleController {
     public @ResponseBody CustomDTO getSumVehicle(){
         return vehicleService.getAllVehicleCount();
     }
+
+    //-------Filter Vehicle details------------------------------
+    /*@ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/filterVehicleDetails",params = {"vehicleRedId,"})
+    public ArrayList<VehicleDTO> getFilterData(@RequestParam String ve);*/
+
+
+
 }
 
 

@@ -2,6 +2,7 @@ package lk.ijse.packageserver.controller;
 
 import lk.ijse.packageserver.dto.BookingDTO;
 import lk.ijse.packageserver.dto.BookingResponse;
+import lk.ijse.packageserver.dto.CustomDTO;
 import lk.ijse.packageserver.server.BookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +67,7 @@ public class BookingController {
             // Call a service method to save the booking and return the result
             return bookingService.saveBooking(bookingDTO);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -89,8 +90,8 @@ public class BookingController {
 //----------------------Get All Details--------------------------------------------
 
     @GetMapping
-    public ResponseEntity<List<BookingResponse>>getAllBooking(){
-        List<BookingResponse>bookingResponses=bookingService.getAllBooking().stream().map(e ->
+    public ResponseEntity<List<BookingResponse>> getAllBooking() {
+        List<BookingResponse> bookingResponses = bookingService.getAllBooking().stream().map(e ->
                 new BookingResponse(
                         e.getBookingId(),
                         e.getPackageId(),
@@ -104,6 +105,26 @@ public class BookingController {
                         Base64.getDecoder().decode(e.getPaymentSlip())
                 )
         ).collect(Collectors.toList());
-        return new ResponseEntity<>(bookingResponses,HttpStatus.OK);
+        return new ResponseEntity<>(bookingResponses, HttpStatus.OK);
     }
+
+
+//--------------Generate Booking--------------------------
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/bookingIdGenerate")
+    public @ResponseBody CustomDTO bookingIdGenerate() {
+        return bookingService.generateBookingId();
+    }
+
+//------------------count of booking-----------------------------------------
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/booking")
+    public @ResponseBody CustomDTO getBookingCount(){
+        return bookingService.getAllBookingCount();
+    }
+
+///---------------------------------------------------------
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/booking")
 }
