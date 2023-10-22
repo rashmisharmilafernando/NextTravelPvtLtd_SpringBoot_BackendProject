@@ -117,14 +117,12 @@ public class BookingController {
         return bookingService.generateBookingId();
     }
 
-//------------------count of booking-----------------------------------------
+    //------------------count of booking-----------------------------------------
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/booking")
-    public @ResponseBody CustomDTO getBookingCount(){
+    public @ResponseBody CustomDTO getBookingCount() {
         return bookingService.getAllBookingCount();
     }
+}
 
 ///---------------------------------------------------------
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/booking")
-}

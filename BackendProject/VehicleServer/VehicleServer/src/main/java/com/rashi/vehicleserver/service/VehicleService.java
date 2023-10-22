@@ -2,12 +2,14 @@ package com.rashi.vehicleserver.service;
 
 import com.rashi.vehicleserver.dto.CustomDTO;
 import com.rashi.vehicleserver.dto.VehicleDTO;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public interface VehicleService {
-    VehicleDTO saveVehicle(VehicleDTO vehicleDTO);
+    void saveVehicle(VehicleDTO vehicleDTO);
 
-    void updateVehicle(String veicleId, VehicleDTO vehicleDTO);
+    void updateVehicle(VehicleDTO vehicleDTO);
 
     void deleteVehicle(String id);
 
@@ -18,6 +20,8 @@ public interface VehicleService {
     VehicleDTO searchVehicleId(String vehicleId);
 
     CustomDTO getAllVehicleCount();
+
+    ArrayList<VehicleDTO> flterVehicleDetails(String passengers, String transmission, String fuelType);
 
 
     /*void update(VehicleDTO vehicleDTO);*/

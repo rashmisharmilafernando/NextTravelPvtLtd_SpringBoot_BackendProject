@@ -5,10 +5,12 @@ import com.rashi.vehicleserver.dto.CustomDTO;
 import com.rashi.vehicleserver.dto.VehicleDTO;
 import com.rashi.vehicleserver.entity.VehicleEntity;
 import com.rashi.vehicleserver.util.DataConvertor;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,14 +25,15 @@ public class VehicleServerIMPL implements VehicleService{
     private VehicleDAO vehicleDAO;
 
     @Override
-    public VehicleDTO saveVehicle(VehicleDTO vehicleDTO) {
-      VehicleEntity vehicleEntity=dataTypeConvertor.getVehicleEntity(vehicleDTO);
-        vehicleDAO.save(vehicleEntity);
-        return vehicleDTO;
+    public void saveVehicle(VehicleDTO vehicleDTO) {
+        vehicleDAO.save(dataTypeConvertor.getVehicleEntity(vehicleDTO));
     }
 
     @Override
-    public void updateVehicle(String veicleId, VehicleDTO vehicleDTO) {
+    public void updateVehicle(VehicleDTO vehicleDTO) {
+        if (!vehicleDAO.existsById(vehicleDTO.getVehicleId())){
+            throw new RuntimeException("Customer not Exist...!");
+        }
         vehicleDAO.save(dataTypeConvertor.getVehicleEntity(vehicleDTO));
     }
 
@@ -62,6 +65,11 @@ public class VehicleServerIMPL implements VehicleService{
     @Override
     public CustomDTO getAllVehicleCount() {
         return new CustomDTO(vehicleDAO.getAllVehicleCount());
+    }
+
+    @Override
+    public ArrayList<VehicleDTO> flterVehicleDetails(String passengers, String transmission, String fuelType) {
+        return (ArrayList<VehicleDTO>) vehicleDAO.filterVehicleDetails(passengers,transmission,fuelType).stream().map(vehicle ->dataTypeConvertor.getVehicleDTO(vehicle)).collect(Collectors.toList());
     }
 
 

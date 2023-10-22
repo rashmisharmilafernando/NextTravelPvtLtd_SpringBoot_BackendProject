@@ -26,5 +26,13 @@ public class VehicleResponse {
     private String driverNumber;
     private byte[]  driverLicense;
 
-
+    public VehicleResponse(String vehicleId, String vehicleBrand, String category, String transmission, String fuelType, String driverName, String driverNumber) {
+        this.vehicleId = vehicleId;
+        this.vehicleBrand = vehicleBrand;
+        this.category = category;
+        this.transmission = transmission;
+        this.fuelType = fuelType;
+        this.driverName = driverName;
+        this.driverNumber = driverNumber;
+    }
 }

@@ -11,16 +11,15 @@ import lombok.ToString;
 @ToString
 public class HotelDTO {
     private String hotelId;
-    private String hotelLocation;
     private String hotelName;
+    private String hotelLocation;
     private String coordinates;
-    private String roomType;
     private String starRate;
     private String packageCategory;
-    private String hotelContactNumber;
+    private String hotelContactNumberOne;
+    private String hotelContactNumberTwo;
     private  boolean petsAllowedOrNot;
     private  String cancelCriteria;
-    private  String remarks;
     private  double hotelFee;
     private String email;
     private String image;

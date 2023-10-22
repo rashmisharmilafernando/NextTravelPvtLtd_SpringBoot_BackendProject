@@ -4,6 +4,7 @@ import com.rashi.vehicleserver.dto.CustomDTO;
 import com.rashi.vehicleserver.dto.VehicleDTO;
 import com.rashi.vehicleserver.dto.VehicleResponse;
 import com.rashi.vehicleserver.service.VehicleService;
+import com.rashi.vehicleserver.util.ResponseUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class VehicleController {
     //Save Vehicle
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public VehicleDTO saveVehicle(
+    public ResponseUtil saveVehicle(
             @RequestParam String vehicleId,
             @RequestParam String vehicleBrand,
             @RequestParam String category,
@@ -52,31 +53,24 @@ public class VehicleController {
             throw new RuntimeException("This Image is empty..!");
         }
         try {
-            String front_View = Base64.getEncoder().encodeToString(frontView.getBytes());
-            String rear_View = Base64.getEncoder().encodeToString(rearView.getBytes());
-            String side_View = Base64.getEncoder().encodeToString(sideView.getBytes());
-            String other_Side_View = Base64.getEncoder().encodeToString(otherSideView.getBytes());
-            String driver_License = Base64.getEncoder().encodeToString(driverLicense.getBytes());
-
-            VehicleDTO vehicleDTO = new VehicleDTO(
+            vehicleService.saveVehicle(new VehicleDTO(
                     vehicleId,
                     vehicleBrand,
                     category,
                     fuelType,
                     isHybrid,
                     fuelUsage,
-                    front_View,
-                    rear_View,
-                    side_View,
-                    other_Side_View,
+                    Base64.getEncoder().encodeToString(frontView.getBytes()),
+                    Base64.getEncoder().encodeToString(rearView.getBytes()),
+                    Base64.getEncoder().encodeToString(sideView.getBytes()),
+                    Base64.getEncoder().encodeToString(otherSideView.getBytes()),
                     seatCapacity,
                     vehicleType,
                     transmission,
                     driverName,
                     driverNumber,
-                    driver_License
-            );
-            return vehicleService.saveVehicle(vehicleDTO);
+                    Base64.getEncoder().encodeToString(driverLicense.getBytes())));
+          return new ResponseUtil("OK","Successfully Registered...!",null);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -85,13 +79,57 @@ public class VehicleController {
 
     //Update
     @PutMapping("/update")
-    public void UpdateVehicle(@PathVariable String veicleId,@RequestBody VehicleDTO vehicleDTO){
-        vehicleService.updateVehicle(veicleId,vehicleDTO);
+    public ResponseUtil UpdateVehicle(
+            @RequestParam String vehicleId,
+            @RequestParam String vehicleBrand,
+            @RequestParam String category,
+            @RequestParam String fuelType,
+            @RequestParam boolean isHybrid,
+            @RequestParam double fuelUsage,
+            @RequestParam MultipartFile frontView,
+            @RequestParam MultipartFile rearView,
+            @RequestParam MultipartFile sideView,
+            @RequestParam MultipartFile otherSideView,
+            @RequestParam int seatCapacity,
+            @RequestParam String vehicleType,
+            @RequestParam String transmission,
+            @RequestParam String driverName,
+            @RequestParam String driverNumber,
+            @RequestParam MultipartFile driverLicense
+    ) {
+        if (frontView.isEmpty() && rearView.isEmpty() && sideView.isEmpty() && otherSideView.isEmpty() && driverLicense.isEmpty()) {
+            throw new RuntimeException("This Image is empty..!");
+        }
+        try {
+            VehicleDTO vehicleDTO = new VehicleDTO(
+                    vehicleId,
+                    vehicleBrand,
+                    category,
+                    fuelType,
+                    isHybrid,
+                    fuelUsage,
+                    Base64.getEncoder().encodeToString(frontView.getBytes()),
+                    Base64.getEncoder().encodeToString(rearView.getBytes()),
+                    Base64.getEncoder().encodeToString(sideView.getBytes()),
+                    Base64.getEncoder().encodeToString(otherSideView.getBytes()),
+                    seatCapacity,
+                    vehicleType,
+                    transmission,
+                    driverName,
+                    driverNumber,
+                    Base64.getEncoder().encodeToString(driverLicense.getBytes())
+            );
+            vehicleService.updateVehicle(vehicleDTO);
+            return new ResponseUtil("OK","Successfully updated..."+vehicleDTO.getVehicleId(),null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     //Delete
     @DeleteMapping("id")
-    public void deleteVehicle(String id){
+    public ResponseUtil deleteVehicle(@RequestParam String id){
         vehicleService.deleteVehicle(id);
+        return new ResponseUtil("OK","Successfully Deleted...!"+id,null);
     }
 
     //Get All
@@ -102,20 +140,11 @@ public class VehicleController {
                         e.getVehicleId(),
                         e.getVehicleBrand(),
                         e.getCategory(),
-                        e.getFuelType(),
-                        e.isHybrid(),
-                        e.getFuelUsage(),
-                        Base64.getDecoder().decode(e.getFrontView()),
-                        Base64.getDecoder().decode(e.getRearView()),
-                        Base64.getDecoder().decode(e.getSideView()),
-                        Base64.getDecoder().decode(e.getOtherSideView()),
-                        e.getSeatCapacity(),
-                        e.getVehicleType(),
                         e.getTransmission(),
+                        e.getFuelType(),
                         e.getDriverName(),
-                        e.getDriverNumber(),
-                        Base64.getDecoder().decode(e.getDriverLicense())
-                )
+                        e.getDriverNumber()
+                    )
         ).collect(Collectors.toList());
         return new ResponseEntity<>(vehicleResponses,HttpStatus.OK);
     }
@@ -126,12 +155,13 @@ public class VehicleController {
     public @ResponseBody CustomDTO vehicleGenerate(){
         return vehicleService.vehicleIdGenerate();
     }
-    //------- Search Vehicle --------------------------
+    //------- Search Vehicle for vehicle table--------------------------
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/searchVehicle",params = {"vehicleId"})
     public VehicleDTO searchVehicleId(String vehicle_Id){
         return vehicleService.searchVehicleId(vehicle_Id);
     }
+
     //-------Vehicle-Count------------------------------
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/vehiclesCount")
@@ -140,10 +170,11 @@ public class VehicleController {
     }
 
     //-------Filter Vehicle details------------------------------
-    /*@ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/filterVehicleDetails",params = {"vehicleRedId,"})
-    public ArrayList<VehicleDTO> getFilterData(@RequestParam String ve);*/
-
+   @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path="/filterVehicle",params = {"passengers","transmission","fuelType"})
+    public ArrayList<VehicleDTO> filterVehicleDetails(@RequestParam String passengers,@RequestParam String transmission,@RequestParam String fuelType){
+        return vehicleService.flterVehicleDetails(passengers,transmission,fuelType);
+   }
 
 
 }
