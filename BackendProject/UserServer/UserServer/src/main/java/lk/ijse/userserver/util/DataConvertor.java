@@ -1,11 +1,17 @@
 package lk.ijse.userserver.util;
 
 import lk.ijse.userserver.dto.CustomerDTO;
-import lk.ijse.userserver.dto.UserDTO;
+import lk.ijse.userserver.dto.AdminDTO;
+import lk.ijse.userserver.dto.UsersDTO;
 import lk.ijse.userserver.entity.CustomerEntity;
+import lk.ijse.userserver.entity.AdminEntity;
 import lk.ijse.userserver.entity.UserEntity;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 @Component
 public class DataConvertor {
@@ -17,15 +23,15 @@ public class DataConvertor {
         this.modelMapper = modelMapper;
     }
 
-    public UserEntity userdtoTOuserEntity(UserDTO userDTO) {
-        return modelMapper.map(userDTO, UserEntity.class);
+    public AdminEntity admindtoTOAdminEntity(AdminDTO adminDTO) {
+        return modelMapper.map(adminDTO, AdminEntity.class);
     }
 
-    public UserDTO userEntityTOuserDto(UserEntity userEntity){
-        return modelMapper.map(userEntity, UserDTO.class);
+    public AdminDTO adminEntityTOAdminDto(AdminEntity adminEntity){
+        return modelMapper.map(adminEntity, AdminDTO.class);
     }
 
-    // Converts a PackageDTO to a PackageEntity
+
     public CustomerEntity customerdtoTOcustomerEntity(CustomerDTO customerDTO) {
         return modelMapper.map(customerDTO, CustomerEntity.class);
     }
@@ -33,4 +39,21 @@ public class DataConvertor {
     public CustomerDTO customerEntityTOcustomerDto(CustomerEntity customerEntity){
         return modelMapper.map(customerEntity, CustomerDTO.class);
     }
+
+
+    public UserEntity userDtoTOUserEntity(UsersDTO usersDTO) {
+        return modelMapper.map(usersDTO, UserEntity.class);
+    }
+
+    public UsersDTO userEntityTOUserDto(UserEntity userEntity){
+        return modelMapper.map(userEntity, UsersDTO.class);
+    }
+
+    public List<UsersDTO> userDtoListToserEntityList(List<UserEntity> vehicleEntityList, Type type) {
+        return modelMapper.map(vehicleEntityList, new TypeToken<List<UsersDTO>>() {
+        }.getType());
+    }
+
+
+
 }

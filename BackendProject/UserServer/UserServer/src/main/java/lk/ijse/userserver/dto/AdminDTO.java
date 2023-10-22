@@ -7,13 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class UserDTO {
+public class AdminDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String userID;
@@ -24,5 +23,4 @@ public class UserDTO {
     private String email;
     private String contactNumber;
     private String address;
-    private String role;
 }

@@ -4,9 +4,7 @@ import com.rashi.vehicleserver.entity.VehicleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @Repository
 public interface VehicleDAO extends JpaRepository<VehicleEntity,String> {

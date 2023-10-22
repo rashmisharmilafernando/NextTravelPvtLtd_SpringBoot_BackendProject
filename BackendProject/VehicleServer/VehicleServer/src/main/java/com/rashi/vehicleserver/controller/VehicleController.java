@@ -28,7 +28,7 @@ public class VehicleController {
         this.vehicleService = vehicleService;
     }
 
-    //Save Vehicle
+    //--------------------------------Save Vehicle--------------------------------------------
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ResponseUtil saveVehicle(
@@ -77,7 +77,7 @@ public class VehicleController {
     }
 
 
-    //Update
+    //----------------------------------------Update------------------------------------
     @PutMapping("/update")
     public ResponseUtil UpdateVehicle(
             @RequestParam String vehicleId,
@@ -125,14 +125,14 @@ public class VehicleController {
             throw new RuntimeException(e);
         }
     }
-    //Delete
+    //------------------------------Delete----------------------------------
     @DeleteMapping("id")
     public ResponseUtil deleteVehicle(@RequestParam String id){
         vehicleService.deleteVehicle(id);
         return new ResponseUtil("OK","Successfully Deleted...!"+id,null);
     }
 
-    //Get All
+    //---------------Get All--------------------------------------------------
     @GetMapping(path = "/loadAllVehicle")
     public ResponseEntity<List<VehicleResponse>>getAllVehicle(){
         List<VehicleResponse> vehicleResponses=vehicleService.getAllVehicle().stream().map(e ->
@@ -175,6 +175,7 @@ public class VehicleController {
     public ArrayList<VehicleDTO> filterVehicleDetails(@RequestParam String passengers,@RequestParam String transmission,@RequestParam String fuelType){
         return vehicleService.flterVehicleDetails(passengers,transmission,fuelType);
    }
+
 
 
 }

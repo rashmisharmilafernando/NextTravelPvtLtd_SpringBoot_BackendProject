@@ -1,49 +1,36 @@
 package lk.ijse.userserver.service.impl;
 
 import lk.ijse.userserver.dao.UserDAO;
-import lk.ijse.userserver.dto.UserDTO;
-import lk.ijse.userserver.service.UserService;
+import lk.ijse.userserver.dto.UsersDTO;
+import lk.ijse.userserver.service.Userservice;
 import lk.ijse.userserver.util.DataConvertor;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.modelmapper.internal.bytebuddy.description.method.MethodDescription;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserServiceIMPL implements UserService {
+public class UserServiceIMPL implements Userservice {
 
-    private final DataConvertor dataConvertor;
+    @Autowired
+    private UserDAO userDAO;
 
-    private final UserDAO userDAO;
+    @Autowired
+    private  DataConvertor dataConvertor;
+    @Override
+    public ArrayList<UsersDTO> getAllUsers() {
+        return (ArrayList<UsersDTO>) dataConvertor.userDtoListToserEntityList(userDAO.findAll(), new TypeToken<ArrayList<UsersDTO>>() {
+        }.getType());
 
-    public UserServiceIMPL(DataConvertor dataConvertor, UserDAO userDAO) {
-        this.dataConvertor = dataConvertor;
-        this.userDAO = userDAO;
     }
 
     @Override
-    public void saveUser(UserDTO userDTO) {
-        userDAO.save(dataConvertor.userdtoTOuserEntity(userDTO));
-    }
-
-    @Override
-    public void updateUser(UserDTO userDTO) {
-        if (!userDAO.existsById(userDTO.getUserID())){
-            throw new RuntimeException("User not exist...!");
-        }
-        userDAO.save(dataConvertor.userdtoTOuserEntity(userDTO));
-    }
-
-    @Override
-    public void deleteUser(String id) {
-        userDAO.deleteById(id);
-    }
-
-    @Override
-    public List<UserDTO> getAllUser() {
-        return userDAO.findAll().stream().map(userEntity -> dataConvertor.userEntityTOuserDto(userEntity)).collect(Collectors.toList());
+    public UsersDTO getUsernamePassword(String username, String password) {
+        return dataConvertor.userEntityTOUserDto(userDAO.findUserByUser_NameAndPassword(username,password));
     }
 }

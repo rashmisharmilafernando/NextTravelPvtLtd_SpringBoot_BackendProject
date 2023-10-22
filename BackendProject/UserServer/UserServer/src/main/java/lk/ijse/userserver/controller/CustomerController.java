@@ -113,5 +113,18 @@ public class CustomerController {
     public @ResponseBody CustomDTO customerIdGenerate(){
         return customerService.customerIdGenerate();
     }
+    //----------------------search customer------------------------------
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/searchCustomer",params = {"customerId"})
+    public CustomerDTO searchCustomerId(String customerId){
+        return customerService.searchCustomerId(customerId);
+    }
 
+    //------------------Customer Count---------------------------
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/customerCount")
+    public @ResponseBody CustomDTO getSumCustomer(){
+        return customerService.getAllCustomerCount();
+    }
 }

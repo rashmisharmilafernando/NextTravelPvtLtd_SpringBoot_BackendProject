@@ -9,4 +9,8 @@ import org.springframework.stereotype.Repository;
 public interface CustomerDAO extends JpaRepository<CustomerEntity,String> {
    @Query(value = "SELECT ID from CustomerEntity order by ID desc LIMIT 1",nativeQuery = true)
     String getLastIndex();
+
+   @Query(value = "SELECT COUNT(ID) FROM CustomerEntity",nativeQuery = true)
+    int getAllCountCount();
+
 }
