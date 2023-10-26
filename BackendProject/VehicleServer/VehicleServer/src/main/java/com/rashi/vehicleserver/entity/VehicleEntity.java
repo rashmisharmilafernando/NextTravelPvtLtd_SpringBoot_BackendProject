@@ -1,6 +1,7 @@
 package com.rashi.vehicleserver.entity;
 
 
+import com.rashi.vehicleserver.enums.HybridStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,11 +20,11 @@ public class VehicleEntity implements SuperEntity{
     private String vehiclebrand;
     private String vehicleCategory;
     private String vehicleFueltype;
-    private boolean hybrid_Status;
+    private String hybridStatus;
     private int vehicleFuelUsage;
     private int vehicleSeatCapacity;
     private String vehicleType;
-    private String TransmissionType;
+    private String transmissionType;
     private String vehicleDriverName;
     private String vehicleDriveNumber;
     @Column(columnDefinition = "LONGTEXT")

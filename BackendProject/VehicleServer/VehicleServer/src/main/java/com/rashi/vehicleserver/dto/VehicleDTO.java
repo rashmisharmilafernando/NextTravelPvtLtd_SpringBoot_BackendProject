@@ -1,6 +1,7 @@
 package com.rashi.vehicleserver.dto;
 
 import com.rashi.vehicleserver.entity.VehicleEntity;
+import com.rashi.vehicleserver.enums.HybridStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +16,11 @@ public class VehicleDTO {
     private String vehiclebrand;
     private String vehicleCategory;
     private String vehicleFueltype;
-    private boolean hybrid_Status;
+    private String hybridStatus;
     private int vehicleFuelUsage;
     private int vehicleSeatCapacity;
     private String vehicleType;
-    private String TransmissionType;
+    private String transmissionType;
     private String vehicleDriverName;
     private String vehicleDriveNumber;
     private String driverLicense;
