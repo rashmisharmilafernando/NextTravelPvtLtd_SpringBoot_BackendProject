@@ -13,7 +13,7 @@ public interface VehicleService {
 
     void deleteVehicle(String id);
 
-    List<VehicleDTO> getAllVehicle();
+    ArrayList<VehicleDTO> getAllVehicle();
 
     CustomDTO vehicleIdGenerate();
 

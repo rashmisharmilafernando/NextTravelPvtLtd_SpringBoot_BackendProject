@@ -31,13 +31,13 @@ public class VehicleController {
     //--------------------------------Save Vehicle--------------------------------------------
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseUtil saveVehicle(
-          @RequestParam(value ="vehicleid") String vehicleId,
+    public  ResponseEntity<String>  saveVehicle(
+            @RequestParam(value ="vehicleId") String vehicleId,
             @RequestParam(value ="vehiclebrand") String vehicleBrand,
             @RequestParam(value ="vehicleCategory") String category,
             @RequestParam(value ="vehicleFueltype") String fuelType,
             @RequestParam(value ="hybrid_Status") boolean isHybrid,
-            @RequestParam(value ="vehicleFuelUsage") double fuelUsage,
+            @RequestParam(value ="vehicleFuelUsage") int fuelUsage,
             @RequestParam(value ="vehicleSeatCapacity") int seatCapacity,
             @RequestParam(value ="vehicleType") String vehicleType,
             @RequestParam(value ="TransmissionType") String transmission,
@@ -50,10 +50,12 @@ public class VehicleController {
             @RequestParam(value ="vehicle_OtherSide_View") MultipartFile otherSideView
 
             ) {
+        System.out.println(vehicleId);
         if (frontView.isEmpty() && rearView.isEmpty() && sideView.isEmpty() && otherSideView.isEmpty() && driverLicense.isEmpty()) {
             throw new RuntimeException("This Image is empty..!");
         }
         try {
+
             vehicleService.saveVehicle(new VehicleDTO(
                    vehicleId,
                     vehicleBrand,
@@ -72,22 +74,55 @@ public class VehicleController {
                     Base64.getEncoder().encodeToString(sideView.getBytes()),
                     Base64.getEncoder().encodeToString(otherSideView.getBytes())));
 
+
+            return ResponseEntity.ok("Vehicle created successfully");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+
+   /* @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public  ResponseUtil  saveVehicle(@ModelAttribute VehicleDTO vehicleDTO, @RequestParam(value ="driverLicense") MultipartFile driverLicense,
+                                      @RequestParam(value ="rearView") MultipartFile rearView,
+                                      @RequestParam(value ="frontView") MultipartFile frontView,
+                                      @RequestParam(value ="sideView") MultipartFile sideView,
+                                      @RequestParam(value ="otherSideView") MultipartFile otherSideView) {
+
+
+        if (frontView.isEmpty() && rearView.isEmpty() && sideView.isEmpty() && otherSideView.isEmpty() && driverLicense.isEmpty()) {
+            throw new RuntimeException("This Image is empty..!");
+        }
+        try {
+            vehicleDTO.setDriverLicense(Base64.getEncoder().encodeToString(driverLicense.getBytes()));
+            vehicleDTO.setRearView(Base64.getEncoder().encodeToString(rearView.getBytes()));
+            vehicleDTO.setFrontView(Base64.getEncoder().encodeToString(frontView.getBytes()));
+            vehicleDTO.setSideView(Base64.getEncoder().encodeToString(sideView.getBytes()));
+            vehicleDTO.setOtherSideView(Base64.getEncoder().encodeToString(otherSideView.getBytes()));
+            vehicleService.saveVehicle(vehicleDTO);
+
             return new ResponseUtil("OK", "Successfully Registered...!", null);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
+*/
 
 
     //----------------------------------------Update------------------------------------
     @PutMapping("/update")
-    public ResponseUtil UpdateVehicle(
+    public ResponseUtil  UpdateVehicle(
             @RequestParam String vehicleId,
             @RequestParam String vehicleBrand,
             @RequestParam String category,
             @RequestParam String fuelType,
             @RequestParam boolean isHybrid,
-            @RequestParam double fuelUsage,
+            @RequestParam int fuelUsage,
             @RequestParam int seatCapacity,
             @RequestParam String vehicleType,
             @RequestParam String transmission,
@@ -124,7 +159,7 @@ public class VehicleController {
                     Base64.getEncoder().encodeToString(otherSideView.getBytes())
             );
             vehicleService.updateVehicle(vehicleDTO);
-            return new ResponseUtil("OK", "Successfully updated..." + vehicleDTO.getVehicleId(), null);
+            return new ResponseUtil ("OK", "Successfully updated..." + vehicleDTO.getVehicleId(), null);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -132,30 +167,21 @@ public class VehicleController {
 
     //------------------------------Delete----------------------------------
     @DeleteMapping("id")
-    public ResponseUtil deleteVehicle(@RequestParam String id) {
+    public ResponseUtil  deleteVehicle(@RequestParam String id) {
         vehicleService.deleteVehicle(id);
-        return new ResponseUtil("OK", "Successfully Deleted...!" + id, null);
+        return new ResponseUtil ("OK", "Successfully Deleted...!" + id, null);
     }
 
     //---------------Get All--------------------------------------------------
+
+    @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/loadAllVehicle")
-    public ResponseEntity<List<VehicleResponse>> getAllVehicle() {
-        List<VehicleResponse> vehicleResponses = vehicleService.getAllVehicle().stream().map(e ->
-                new VehicleResponse(
-                        e.getVehicleId(),
-                        e.getVehicleBrand(),
-                        e.getCategory(),
-                        e.getFuelType(),
-                        e.isHybrid(),
-                        e.getSeatCapacity(),
-                        e.getVehicleType(),
-                        e.getTransmission(),
-                        e.getDriverName(),
-                        e.getDriverNumber()
-                )
-        ).collect(Collectors.toList());
-        return new ResponseEntity<>(vehicleResponses, HttpStatus.OK);
+    public ResponseUtil getAllCar() {
+        return new ResponseUtil("Ok","Successfully",vehicleService.getAllVehicle());
     }
+
+
+
 
     //------- Auto Generate id--------------------------
     @ResponseStatus(HttpStatus.CREATED)

@@ -16,16 +16,16 @@ import lombok.ToString;
 public class VehicleEntity implements SuperEntity{
     @Id
     private String vehicleId;
-    private String vehicleBrand;
-    private String category;
-    private String fuelType;
-    private boolean isHybrid;
-    private double fuelUsage;
-    private int seatCapacity;
+    private String vehiclebrand;
+    private String vehicleCategory;
+    private String vehicleFueltype;
+    private boolean hybrid_Status;
+    private int vehicleFuelUsage;
+    private int vehicleSeatCapacity;
     private String vehicleType;
-    private String transmission;
-    private String driverName;
-    private String driverNumber;
+    private String TransmissionType;
+    private String vehicleDriverName;
+    private String vehicleDriveNumber;
     @Column(columnDefinition = "LONGTEXT")
     private String driverLicense;
     @Column(columnDefinition = "LONGTEXT")

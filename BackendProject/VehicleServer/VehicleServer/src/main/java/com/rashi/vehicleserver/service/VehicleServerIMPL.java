@@ -43,8 +43,9 @@ public class VehicleServerIMPL implements VehicleService{
     }
 
     @Override
-    public List<VehicleDTO>getAllVehicle() {
-        return vehicleDAO.findAll().stream().map(vehicle->dataTypeConvertor.getVehicleDTO(vehicle)).collect(Collectors.toList());
+    public ArrayList<VehicleDTO>getAllVehicle() {
+        List<VehicleEntity> vehicleEntity=vehicleDAO.findAll();
+        return dataTypeConvertor.vehicleDTOListTovehicleDTOList(vehicleEntity);
     }
 
     @Override

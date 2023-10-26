@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -27,7 +28,7 @@ public class DataConvertor {
         return modelMapper.map(vehicleDTO, VehicleEntity.class);
     }
 
-    public List<VehicleDTO> vehicleDTOListTovehicleDTOList(List<VehicleEntity> vehicleEntityList) {
+    public ArrayList<VehicleDTO> vehicleDTOListTovehicleDTOList(List<VehicleEntity> vehicleEntityList) {
         return modelMapper.map(vehicleEntityList, new TypeToken<List<VehicleDTO>>() {
         }.getType());
     }
