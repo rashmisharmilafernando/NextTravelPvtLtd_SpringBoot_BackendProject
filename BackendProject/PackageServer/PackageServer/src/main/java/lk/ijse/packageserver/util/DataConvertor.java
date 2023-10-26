@@ -31,7 +31,7 @@ public class DataConvertor {
     }
 
     // Converts a PackageEntity to a PackageDTO (returned as an Object)
-    public Object getPackageDTO(PackageEntity packageEntity) {
+    public PackageDTO getPackageDTO(PackageEntity packageEntity) {
         // Using ModelMapper to map fields from packageEntity to a new PackageDTO
         return modelMapper.map(packageEntity, PackageDTO.class);
     }

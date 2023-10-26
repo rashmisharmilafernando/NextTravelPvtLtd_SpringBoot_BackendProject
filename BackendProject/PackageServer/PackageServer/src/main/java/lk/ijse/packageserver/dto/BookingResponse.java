@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class BookingResponse {
     private String bookingId;
-    private String packageId;
     private String startDate;
     private String endDate;
     private String nightCount;
@@ -18,4 +17,5 @@ public class BookingResponse {
     private String childrenCount;
     private double fullAmount;
     private byte[] paymentSlip;
+    private PackageDTO packageId;
 }

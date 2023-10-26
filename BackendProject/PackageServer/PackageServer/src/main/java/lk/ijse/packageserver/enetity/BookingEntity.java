@@ -16,8 +16,6 @@ public class BookingEntity implements SuperEntity{
     @GeneratedValue(strategy = GenerationType.UUID)
     private String bookingId;
     @Column(nullable = false)
-    private String packageId;
-    @Column(nullable = false)
     private String startDate;
     @Column(nullable = false)
     private String endDate;
@@ -33,5 +31,9 @@ public class BookingEntity implements SuperEntity{
     private double fullAmount;
     @Column(nullable = false)
     private String paymentSlip;
+
+    @ManyToOne
+    @JoinColumn(name = "packageId")
+    private PackageEntity packageId;
 
 }

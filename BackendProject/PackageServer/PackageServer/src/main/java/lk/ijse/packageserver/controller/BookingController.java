@@ -3,7 +3,10 @@ package lk.ijse.packageserver.controller;
 import lk.ijse.packageserver.dto.BookingDTO;
 import lk.ijse.packageserver.dto.BookingResponse;
 import lk.ijse.packageserver.dto.CustomDTO;
+import lk.ijse.packageserver.dto.PackageDTO;
 import lk.ijse.packageserver.server.BookingService;
+import lk.ijse.packageserver.server.PackageService;
+import lk.ijse.packageserver.util.ResponseUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +24,12 @@ import java.util.stream.Collectors;
 public class BookingController {
     // A field to store an instance of the BookingService, which provides booking-related functionality.
     private final BookingService bookingService;
+    private final PackageService packageService;
 
     // Constructor for the BookingController class, accepting an instance of BookingService.
-    public BookingController(BookingService bookingService) {
+    public BookingController(BookingService bookingService, PackageService packageService) {
         this.bookingService = bookingService;
+        this.packageService = packageService;
     }
 
 
@@ -33,10 +38,9 @@ public class BookingController {
     @ResponseStatus(HttpStatus.CREATED)
     // Specifies that this method handles HTTP POST requests
     @PostMapping
-    public BookingDTO saveBooking(
+    public ResponseUtil saveBooking(
             // Request parameters are used to extract data from the request
             @RequestParam String bookingId,
-            @RequestParam String packageId,
             @RequestParam String startDate,
             @RequestParam String endDate,
             @RequestParam String nightCount,
@@ -44,29 +48,27 @@ public class BookingController {
             @RequestParam String adultsCount,
             @RequestParam String childrenCount,
             @RequestParam double fullAmount,
-            @RequestParam String paymentSlip
+            @RequestParam String paymentSlip,
+            @RequestParam PackageDTO packageId
     ) {
         if (paymentSlip.isEmpty()) {
-            throw new RuntimeException("Paymentslip is empty...!");
+            throw new RuntimeException("Payment-slip is empty...!");
         }
         try {
-            String payment_slip = Base64.getEncoder().encodeToString(paymentSlip.getBytes());
-            // Create a BookingDTO object with the extracted request parameters
-            BookingDTO bookingDTO = new BookingDTO(
-                    bookingId,
-                    packageId,
-                    startDate,
-                    endDate,
-                    nightCount,
-                    dayCount,
-                    adultsCount,
-                    childrenCount,
-                    fullAmount,
-                    payment_slip
-            );
-            // Call a service method to save the booking and return the result
-            return bookingService.saveBooking(bookingDTO);
-
+            bookingService.saveBooking(
+                    new BookingDTO(
+                            bookingId,
+                            startDate,
+                            endDate,
+                            nightCount,
+                            dayCount,
+                            adultsCount,
+                            childrenCount,
+                            fullAmount,
+                            Base64.getEncoder().encodeToString(paymentSlip.getBytes()),
+                            packageId
+                    ));
+             return new ResponseUtil("ok","Successfully Booking...!",null);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -75,16 +77,47 @@ public class BookingController {
 //--------------------Update----------------------------------------------
 
     @PutMapping
-    public void updateBooking(@PathVariable String id, @RequestBody BookingDTO bookingDTO) {
-        bookingService.updateBooking(id, bookingDTO);
+    public ResponseUtil updateBooking(@RequestParam String bookingId,
+                                      @RequestParam String startDate,
+                                      @RequestParam String endDate,
+                                      @RequestParam String nightCount,
+                                      @RequestParam String dayCount,
+                                      @RequestParam String adultsCount,
+                                      @RequestParam String childrenCount,
+                                      @RequestParam double fullAmount,
+                                      @RequestParam String paymentSlip,
+                                      @RequestParam PackageDTO packageId) {
+        if (paymentSlip.isEmpty()) {
+            throw new RuntimeException("Payment-slip is empty...!");
+        }
+        try {
+            BookingDTO bookingDTO = new BookingDTO(
+                    bookingId,
+                    startDate,
+                    endDate,
+                    nightCount,
+                    dayCount,
+                    adultsCount,
+                    childrenCount,
+                    fullAmount,
+                    Base64.getEncoder().encodeToString(paymentSlip.getBytes()),
+                    packageId
+            );
+            bookingService.updateBooking(bookingDTO);
+            return new ResponseUtil("OK", "Successfully updated....!" + bookingDTO.getBookingId(), null);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
 //---------------------Delete--------------------------------------
 
-    @DeleteMapping
-    public void deleteBooking(String id) {
+    @DeleteMapping("id")
+    public ResponseUtil deleteBooking(String id) {
         bookingService.deleteBooking(id);
+        return new ResponseUtil("OK","Successfully Deleted...!"+id,null);
     }
 
 //----------------------Get All Details--------------------------------------------
@@ -94,7 +127,6 @@ public class BookingController {
         List<BookingResponse> bookingResponses = bookingService.getAllBooking().stream().map(e ->
                 new BookingResponse(
                         e.getBookingId(),
-                        e.getPackageId(),
                         e.getStartDate(),
                         e.getEndDate(),
                         e.getNightCount(),
@@ -102,7 +134,8 @@ public class BookingController {
                         e.getAdultsCount(),
                         e.getChildrenCount(),
                         e.getFullAmount(),
-                        Base64.getDecoder().decode(e.getPaymentSlip())
+                        Base64.getDecoder().decode(e.getPaymentSlip()),
+                        e.getPackageId()
                 )
         ).collect(Collectors.toList());
         return new ResponseEntity<>(bookingResponses, HttpStatus.OK);

@@ -3,7 +3,9 @@ package lk.ijse.packageserver.server.impl;
 import lk.ijse.packageserver.dao.BookingDAO;
 import lk.ijse.packageserver.dto.BookingDTO;
 import lk.ijse.packageserver.dto.CustomDTO;
+import lk.ijse.packageserver.dto.PackageDTO;
 import lk.ijse.packageserver.enetity.BookingEntity;
+import lk.ijse.packageserver.enetity.PackageEntity;
 import lk.ijse.packageserver.server.BookingService;
 import lk.ijse.packageserver.util.DataConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,7 @@ public class BookingServiceIMPL implements BookingService {
     }
 
     @Override
-    public void updateBooking(String id, BookingDTO bookingDTO) {
+    public void updateBooking(BookingDTO bookingDTO) {
         bookingDAO.save(dataConvertor.getBookingEntity(bookingDTO));
     }
 
@@ -51,5 +53,10 @@ public class BookingServiceIMPL implements BookingService {
     @Override
     public CustomDTO getAllBookingCount() {
         return new CustomDTO(bookingDAO.getAllBookingCount());
+    }
+
+    @Override
+    public PackageDTO getPackageById(String packageId) {
+        return null;
     }
 }

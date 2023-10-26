@@ -8,42 +8,32 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@Table(name = "Vehicle")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class VehicleEntity implements SuperEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String vehicleId;
-    @Column(nullable = false)
     private String vehicleBrand;
-    @Column(nullable = false)
     private String category;
-    @Column(nullable = false)
     private String fuelType;
-    @Column(nullable = false)
     private boolean isHybrid;
-    @Column(nullable = false)
     private double fuelUsage;
+    private int seatCapacity;
+    private String vehicleType;
+    private String transmission;
+    private String driverName;
+    private String driverNumber;
     @Column(columnDefinition = "LONGTEXT")
-    private String frontView;
+    private String driverLicense;
     @Column(columnDefinition = "LONGTEXT")
     private String rearView;
+    @Column(columnDefinition = "LONGTEXT")
+    private String frontView;
     @Column(columnDefinition = "LONGTEXT")
     private String sideView;
     @Column(columnDefinition = "LONGTEXT")
     private String otherSideView;
-    @Column(nullable = false)
-    private int seatCapacity;
-    @Column(nullable = false)
-    private String vehicleType;
-    @Column(nullable = false)
-    private String transmission;
-    @Column(nullable = false)
-    private String driverName;
-    @Column(nullable = false)
-    private String driverNumber;
-    @Column(columnDefinition = "LONGTEXT")
-    private String driverLicense;
 }

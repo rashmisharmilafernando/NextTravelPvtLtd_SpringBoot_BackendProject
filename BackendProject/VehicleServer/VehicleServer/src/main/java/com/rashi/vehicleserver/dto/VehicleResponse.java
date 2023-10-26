@@ -26,12 +26,15 @@ public class VehicleResponse {
     private String driverNumber;
     private byte[]  driverLicense;
 
-    public VehicleResponse(String vehicleId, String vehicleBrand, String category, String transmission, String fuelType, String driverName, String driverNumber) {
+    public VehicleResponse(String vehicleId, String vehicleBrand, String category, String fuelType, boolean isHybrid, int seatCapacity, String vehicleType, String transmission, String driverName, String driverNumber) {
         this.vehicleId = vehicleId;
         this.vehicleBrand = vehicleBrand;
         this.category = category;
-        this.transmission = transmission;
         this.fuelType = fuelType;
+        this.isHybrid = isHybrid;
+        this.seatCapacity = seatCapacity;
+        this.vehicleType = vehicleType;
+        this.transmission = transmission;
         this.driverName = driverName;
         this.driverNumber = driverNumber;
     }

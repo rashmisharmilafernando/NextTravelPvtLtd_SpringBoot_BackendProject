@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -27,4 +29,6 @@ public class PackageEntity implements SuperEntity{
     private boolean petStatus;
     @Column(nullable = false)
     private double price;
+
+
 }
