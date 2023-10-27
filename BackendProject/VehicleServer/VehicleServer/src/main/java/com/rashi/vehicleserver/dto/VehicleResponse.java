@@ -12,6 +12,7 @@ public class VehicleResponse {
 
 
     private String vehicleId;
+    private String vehicleRegId;
     private String vehiclebrand;
     private String vehicleCategory;
     private String vehicleFueltype;
@@ -24,9 +25,6 @@ public class VehicleResponse {
     private String vehicleDriveNumber;
     private byte[] driverLicense;
     private byte[] rearView;
-    private byte[] frontView;
-    private byte[] sideView;
-    private byte[] otherSideView;
 
     public VehicleResponse(String vehicleId, String vehiclebrand, String vehicleCategory, String vehicleFueltype, boolean hybrid_Status, int vehicleFuelUsage, int vehicleSeatCapacity, String vehicleType, String transmissionType, String vehicleDriverName, String vehicleDriveNumber) {
         this.vehicleId = vehicleId;

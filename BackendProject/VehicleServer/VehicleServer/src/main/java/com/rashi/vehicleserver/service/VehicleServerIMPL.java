@@ -38,8 +38,11 @@ public class VehicleServerIMPL implements VehicleService{
     }
 
     @Override
-    public void deleteVehicle(String id) {
-        vehicleDAO.deleteById(id);
+    public void deleteVehicle(String vehicleId) {
+        if (!vehicleDAO.existsById(vehicleId)) {
+            throw new RuntimeException("Wrong ID..Please enter valid id..!");
+        }
+        vehicleDAO.deleteById(vehicleId);
     }
 
     @Override

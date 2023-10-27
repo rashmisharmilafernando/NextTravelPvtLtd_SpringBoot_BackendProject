@@ -13,6 +13,7 @@ import lombok.ToString;
 @ToString
 public class VehicleDTO {
     private String vehicleId;
+    private String vehicleRegId;
     private String vehiclebrand;
     private String vehicleCategory;
     private String vehicleFueltype;
@@ -25,8 +26,5 @@ public class VehicleDTO {
     private String vehicleDriveNumber;
     private String driverLicense;
     private String rearView;
-    private String frontView;
-    private String sideView;
-    private String otherSideView;
 
 }

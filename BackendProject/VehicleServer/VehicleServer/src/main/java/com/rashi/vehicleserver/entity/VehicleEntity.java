@@ -17,6 +17,7 @@ import lombok.ToString;
 public class VehicleEntity implements SuperEntity{
     @Id
     private String vehicleId;
+    private String vehicleRegId;
     private String vehiclebrand;
     private String vehicleCategory;
     private String vehicleFueltype;
@@ -31,10 +32,4 @@ public class VehicleEntity implements SuperEntity{
     private String driverLicense;
     @Column(columnDefinition = "LONGTEXT")
     private String rearView;
-    @Column(columnDefinition = "LONGTEXT")
-    private String frontView;
-    @Column(columnDefinition = "LONGTEXT")
-    private String sideView;
-    @Column(columnDefinition = "LONGTEXT")
-    private String otherSideView;
 }

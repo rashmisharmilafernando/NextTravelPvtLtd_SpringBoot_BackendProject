@@ -13,6 +13,8 @@ public interface VehicleDAO extends JpaRepository<VehicleEntity,String> {
 
     @Query(value = "SELECT COUNT(vehicleId) FROM Vehicle",nativeQuery = true)
     int getAllVehicleCount();
+
+
     @Query(value = "SELECT * FROM Vehicle WHERE passengers=?1 or transmission=?2 and fuelType=?3", nativeQuery = true)
     ArrayList<VehicleEntity> filterVehicleDetails(String passengers, String transmission, String fuelType);
 }

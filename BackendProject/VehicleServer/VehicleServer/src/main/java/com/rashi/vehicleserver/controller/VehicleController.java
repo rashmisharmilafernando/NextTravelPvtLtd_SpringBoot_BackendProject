@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:63342")
 @RequestMapping("api/v1/vehicle")
 public class VehicleController {
 
@@ -30,6 +30,7 @@ public class VehicleController {
     @PostMapping
     public  ResponseEntity<String>  saveVehicle(
             @RequestParam(value ="vehicleId") String vehicleId,
+            @RequestParam(value ="vehicleRegId") String vehicleRegId,
             @RequestParam(value ="vehiclebrand") String vehicleBrand,
             @RequestParam(value ="vehicleCategory") String category,
             @RequestParam(value ="vehicleFueltype") String fuelType,
@@ -41,20 +42,18 @@ public class VehicleController {
             @RequestParam(value ="vehicleDriverName") String driverName,
             @RequestParam(value ="vehicleDriveNumber") String driverNumber,
             @RequestParam(value ="license") MultipartFile driverLicense,
-            @RequestParam(value ="vehicleRearView") MultipartFile rearView,
-            @RequestParam(value ="vehicle_Font_View") MultipartFile frontView,
-            @RequestParam(value ="vehicle_Side_View") MultipartFile sideView,
-            @RequestParam(value ="vehicle_OtherSide_View") MultipartFile otherSideView
+            @RequestParam(value ="vehicleRearView") MultipartFile rearView
 
             ) {
         System.out.println(vehicleId);
-        if (frontView.isEmpty() && rearView.isEmpty() && sideView.isEmpty() && otherSideView.isEmpty() && driverLicense.isEmpty()) {
+        if (rearView.isEmpty()  && driverLicense.isEmpty()) {
             throw new RuntimeException("This Image is empty..!");
         }
         try {
 
             vehicleService.saveVehicle(new VehicleDTO(
                    vehicleId,
+                    vehicleRegId,
                     vehicleBrand,
                     category,
                     fuelType,
@@ -66,10 +65,7 @@ public class VehicleController {
                     driverName,
                     driverNumber,
                     Base64.getEncoder().encodeToString(driverLicense.getBytes()),
-                    Base64.getEncoder().encodeToString(rearView.getBytes()),
-                    Base64.getEncoder().encodeToString(frontView.getBytes()),
-                    Base64.getEncoder().encodeToString(sideView.getBytes()),
-                    Base64.getEncoder().encodeToString(otherSideView.getBytes())));
+                    Base64.getEncoder().encodeToString(rearView.getBytes())));
 
 
             return ResponseEntity.ok("Vehicle created successfully");
@@ -84,6 +80,7 @@ public class VehicleController {
     @PutMapping("/update")
     public ResponseUtil  UpdateVehicle(
             @RequestParam(value ="vehicleId") String vehicleId,
+            @RequestParam(value ="vehicleRegId") String vehicleRegId,
             @RequestParam(value ="vehiclebrand") String vehicleBrand,
             @RequestParam(value ="vehicleCategory") String category,
             @RequestParam(value ="vehicleFueltype") String fuelType,
@@ -95,19 +92,17 @@ public class VehicleController {
             @RequestParam(value ="vehicleDriverName") String driverName,
             @RequestParam(value ="vehicleDriveNumber") String driverNumber,
             @RequestParam(value ="license") MultipartFile driverLicense,
-            @RequestParam(value ="vehicleRearView") MultipartFile rearView,
-            @RequestParam(value ="vehicle_Font_View") MultipartFile frontView,
-            @RequestParam(value ="vehicle_Side_View") MultipartFile sideView,
-            @RequestParam(value ="vehicle_OtherSide_View") MultipartFile otherSideView
+            @RequestParam(value ="vehicleRearView") MultipartFile rearView
 
 
     ) {
-        if (frontView.isEmpty() && rearView.isEmpty() && sideView.isEmpty() && otherSideView.isEmpty() && driverLicense.isEmpty()) {
+        if (rearView.isEmpty()  && driverLicense.isEmpty()) {
             throw new RuntimeException("This Image is empty..!");
         }
         try {
             VehicleDTO vehicleDTO = new VehicleDTO(
                     vehicleId,
+                    vehicleRegId,
                     vehicleBrand,
                     category,
                     fuelType,
@@ -119,10 +114,7 @@ public class VehicleController {
                     driverName,
                     driverNumber,
                     Base64.getEncoder().encodeToString(driverLicense.getBytes()),
-                    Base64.getEncoder().encodeToString(rearView.getBytes()),
-                    Base64.getEncoder().encodeToString(frontView.getBytes()),
-                    Base64.getEncoder().encodeToString(sideView.getBytes()),
-                    Base64.getEncoder().encodeToString(otherSideView.getBytes()));
+                    Base64.getEncoder().encodeToString(rearView.getBytes()));
 
             vehicleService.updateVehicle(vehicleDTO);
             return new ResponseUtil ("OK", "Successfully updated..." + vehicleDTO.getVehicleId(), null);
@@ -132,11 +124,13 @@ public class VehicleController {
     }
 
     //------------------------------Delete----------------------------------
-    @DeleteMapping("id")
-    public ResponseUtil  deleteVehicle(@RequestParam String id) {
+    @ResponseStatus(HttpStatus.CREATED)
+    @DeleteMapping(params = {"id"})
+    public ResponseEntity<String> deleteVehicle(@RequestParam String id) {
         vehicleService.deleteVehicle(id);
-        return new ResponseUtil ("OK", "Successfully Deleted...!" + id, null);
+        return ResponseEntity.ok("Vehicle deleted successfully.");
     }
+
 
     //---------------Get All--------------------------------------------------
 
