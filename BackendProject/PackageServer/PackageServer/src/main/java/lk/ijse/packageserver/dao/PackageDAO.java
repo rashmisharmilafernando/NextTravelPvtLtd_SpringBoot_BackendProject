@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 @Repository
 public interface PackageDAO extends JpaRepository<PackageEntity,String> {
-    @Query(value = "SELECT packageId FROM PackageEntity ORDER BY packageId DESC LIMIT 1",nativeQuery = true)
+    @Query(value = "SELECT packageId FROM Package ORDER BY packageId DESC LIMIT 1",nativeQuery = true)
     String getLastIndex();
 
 
-    @Query(value = "SELECT COUNT (packageId) FROM PackageEntity ",nativeQuery = true)
+    @Query(value = "SELECT COUNT (packageId) FROM Package ",nativeQuery = true)
     int getAllPackageCount();
 
-    @Query(value = "SELECT * FROM PackageEntity WHERE packageName=?1 or packagePrice=?", nativeQuery = true)
+    @Query(value = "SELECT * FROM Package WHERE packageCategory=?1 or price=?2", nativeQuery = true)
     ArrayList<PackageEntity> filterPackageName(String packageName,double packagePrice);
 }

@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -37,7 +38,7 @@ public class DataConvertor {
     }
 
     // Converts a List of PackageEntity to a List of PackageDTO
-    public List<PackageDTO> pacackageDTOtoPackageDTOList(List<PackageEntity> packages){
+    public ArrayList<PackageDTO> pacackageDTOtoPackageDTOList(List<PackageEntity> packages){
         // Using ModelMapper to map a List of PackageEntity to a List of PackageDTO
         // The TypeToken is used to specify the destination type as List<PackageDTO>
         return modelMapper.map(packages,new TypeToken<List<PackageDTO>>(){}.getType());

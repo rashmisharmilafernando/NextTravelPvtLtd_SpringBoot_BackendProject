@@ -11,25 +11,26 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Table(name = "Booking")
 public class BookingEntity implements SuperEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+
     private String bookingId;
-    @Column(nullable = false)
+
     private String startDate;
-    @Column(nullable = false)
+
     private String endDate;
-    @Column(nullable = false)
+
     private String nightCount;
-    @Column(nullable = false)
+
     private String dayCount;
-    @Column(nullable = false)
+
     private String adultsCount;
-    @Column(nullable = false)
+
     private String childrenCount;
-    @Column(nullable = false)
+
     private double fullAmount;
-    @Column(nullable = false)
+
     private String paymentSlip;
 
     @ManyToOne

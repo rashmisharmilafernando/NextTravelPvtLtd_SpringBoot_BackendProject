@@ -34,7 +34,7 @@ public class PackageServiceIMPL implements PackageService {
     }
 
     @Override
-    public void updatePackage(String packageId, PackageDTO packageDTO) {
+    public void updatePackage(PackageDTO packageDTO) {
         packageDAO.save(dataConvertor.getPackageEntity(packageDTO));
     }
 
@@ -44,8 +44,10 @@ public class PackageServiceIMPL implements PackageService {
     }
 
     @Override
-    public List<PackageDTO> getAllPackage() {
-        return dataConvertor.pacackageDTOtoPackageDTOList(packageDAO.findAll());
+    public ArrayList<PackageDTO> getAllPackage() {
+        List<PackageEntity> packageEntities=packageDAO.findAll();
+        return dataConvertor.pacackageDTOtoPackageDTOList(packageEntities);
+
     }
 
     @Override

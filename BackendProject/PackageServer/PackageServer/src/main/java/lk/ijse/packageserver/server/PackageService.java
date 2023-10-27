@@ -10,11 +10,11 @@ import java.util.List;
 public interface PackageService {
     PackageDTO savePackage(PackageDTO packageDTO);
 
-    void updatePackage(String packageid, PackageDTO packageDTO);
+    void updatePackage(PackageDTO packageDTO);
 
     void deletePackage(String id);
 
-    List<PackageDTO> getAllPackage();
+    ArrayList<PackageDTO> getAllPackage();
 
     PackageDTO getPackageById(String packageId);
 
@@ -24,5 +24,5 @@ public interface PackageService {
 
     CustomDTO getAllPackageCount();
 
-    ArrayList<PackageDTO> filterPackageName(String packageName,double packagePrice);
+    ArrayList<PackageDTO> filterPackageName(String packageCategory,double price);
 }

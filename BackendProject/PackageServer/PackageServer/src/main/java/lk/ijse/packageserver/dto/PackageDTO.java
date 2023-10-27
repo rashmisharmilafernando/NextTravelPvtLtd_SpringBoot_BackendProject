@@ -12,9 +12,9 @@ import lombok.ToString;
 public class PackageDTO {
     private String packageId;
     private String packageCategory;
-    private int nightCount;
-    private String travelArea;
-    private int totalHeadCount;
-    private boolean petStatus;
     private double price;
+    private int nightCount;
+    private int dayCount;
+    private int totalHeadCount;
+
 }

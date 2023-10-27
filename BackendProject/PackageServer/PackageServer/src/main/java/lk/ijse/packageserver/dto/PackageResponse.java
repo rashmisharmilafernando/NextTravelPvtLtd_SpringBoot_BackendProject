@@ -10,9 +10,8 @@ import lombok.NoArgsConstructor;
 public class PackageResponse {
     private String packageId;
     private String packageCategory;
-    private int nightCount;
-    private String travelArea;
-    private int totalHeadCount;
-    private boolean petStatus;
     private double price;
+    private int nightCount;
+    private int dayCount;
+    private int totalHeadCount;
 }

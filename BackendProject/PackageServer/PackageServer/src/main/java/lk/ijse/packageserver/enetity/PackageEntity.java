@@ -13,22 +13,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Table(name = "Package")
 public class PackageEntity implements SuperEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String packageId;
-    @Column(nullable = false)
     private String packageCategory;
-    @Column(nullable = false)
-    private int nightCount;
-    @Column(nullable = false)
-    private String travelArea;
-    @Column(nullable = false)
-    private int totalHeadCount;
-    @Column(nullable = false)
-    private boolean petStatus;
-    @Column(nullable = false)
     private double price;
+    private int nightCount;
+    private int dayCount;
+    private int totalHeadCount;
 
 
 }
