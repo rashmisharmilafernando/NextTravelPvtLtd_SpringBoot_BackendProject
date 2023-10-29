@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63b8abf2-b5a6-4181-b24d-43811c2d404e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/controller/GuideController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/dao/GuideDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/dto/GuideDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/dto/GuideResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/entity/GuideEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/entity/SuperEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/server/GuideService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/server/GuideServiceIMPL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/util/DataConvertor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/GuideServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/java/lk/ijse/guideserver/GuideServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackendProject/PackageServer/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BackendProject/PackageServer/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BackendProject/GuideServer/GuideServer/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,22 +30,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "E:/2nd SEMESTER/Spring Final Project/SpringBootFinalProject_Backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "spring.configuration.checksum": "2a59c3fd62199e62d0a19b996aac2dcb",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/2nd SEMESTER/Spring Final Project/SpringBootFinalProject_Backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;2a59c3fd62199e62d0a19b996aac2dcb&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
   <component name="RunManager" selected="Spring Boot.VehicleServerApplication">
     <configuration name="VehicleServerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="VehicleServer" />
@@ -85,6 +79,7 @@
       <updated>1697639488143</updated>
       <workItem from="1697639489385" duration="478000" />
       <workItem from="1697835329464" duration="133000" />
+      <workItem from="1698617895853" duration="99000" />
     </task>
     <servers />
   </component>
