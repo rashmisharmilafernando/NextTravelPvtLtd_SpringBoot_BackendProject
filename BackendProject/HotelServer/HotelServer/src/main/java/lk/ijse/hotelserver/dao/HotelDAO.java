@@ -20,5 +20,6 @@ public interface HotelDAO extends JpaRepository<HotelEntity,String> {
 
     boolean existsByLocation(String location);
 
+    @Query(value = "SELECT * FROM HotelEntity WHERE hotelRate=?1 and hotelLocation=?2" , nativeQuery = true)
     List<HotelEntity> findAllByStarRateAndHotelLocation(String startRate, String location);
 }
