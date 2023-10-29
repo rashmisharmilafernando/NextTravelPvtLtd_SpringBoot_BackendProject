@@ -15,11 +15,17 @@ public interface HotelDAO extends JpaRepository<HotelEntity,String> {
     @Query(value = "SELECT COUNT(hotelId) FROM Hotel",nativeQuery = true)
     int getAllHotelCount();
 
-
+    @Query(value = "SELECT 1 FROM Hotel where hotelRate=?1",nativeQuery = true)
     boolean existsByStarRate(String startRate);
-
+    @Query(value = "SELECT 1 FROM Hotel where hotelLocation=?1",nativeQuery = true)
     boolean existsByLocation(String location);
 
-    @Query(value = "SELECT * FROM HotelEntity WHERE hotelRate=?1 and hotelLocation=?2" , nativeQuery = true)
+    @Query(value = "SELECT * FROM Hotel WHERE hotelRate=?1 and hotelLocation=?2" , nativeQuery = true)
     List<HotelEntity> findAllByStarRateAndHotelLocation(String startRate, String location);
+    @Query(value = "SELECT 1 FROM Hotel where  hotelCategory=?1",nativeQuery = true)
+    boolean existByPackage(String packageCategory);
+
+    @Query(value = "SELECT * FROM Hotel WHERE hotelCategory=?1" , nativeQuery = true)
+    List<HotelEntity> findAllByPackage(String packageCategory);
+
 }

@@ -143,5 +143,9 @@ public class HotelController {
       return new ResponseEntity<>(hotelService.getAllHotelByStarRateAndLocation(startRate,location),HttpStatus.OK);
     }
 
-    //-----------------------------------------------------------------
+    //--------------------------Filter hotels details according to packages---------------------------------------
+    @GetMapping(path = "/getAllHotelsByPackage",params = "packageCategory")
+    public ResponseEntity<List<HotelDTO>> getAllHotelByPackage(String packageCategory){
+        return new ResponseEntity<>(hotelService.getAllHotelByPackage(packageCategory),HttpStatus.OK);
+    }
 }

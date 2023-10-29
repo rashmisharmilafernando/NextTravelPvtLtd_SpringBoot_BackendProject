@@ -24,5 +24,7 @@ public interface HotelService {
 
     List<HotelDTO> getAllHotelByStarRateAndLocation(String startRate, String location);
 
+    List<HotelDTO> getAllHotelByPackage(String packageCategory);
+
     /*ArrayList<HotelDTO> filterHotelDetails(String startRate, String location);*/
 }
