@@ -22,5 +22,7 @@ public interface HotelService {
 
     CustomDTO getAllHotelCount();
 
+    List<HotelDTO> getAllHotelByStarRateAndLocation(String startRate, String location);
+
     /*ArrayList<HotelDTO> filterHotelDetails(String startRate, String location);*/
 }

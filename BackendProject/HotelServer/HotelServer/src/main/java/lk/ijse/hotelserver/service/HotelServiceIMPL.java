@@ -69,6 +69,15 @@ public class HotelServiceIMPL implements HotelService{
         return new CustomDTO(hotelDAO.getAllHotelCount());
     }
 
+    @Override
+    public List<HotelDTO> getAllHotelByStarRateAndLocation(String startRate, String location) {
+        if (!hotelDAO.existsByStarRate(startRate))
+            throw new RuntimeException(startRate+" Start Rate Category not exists");
+        if (!hotelDAO.existsByLocation(location))
+            throw new RuntimeException(startRate+" Location not exists");
+        return dataTypeConversion.hotelDTOListToHotelDTOList(hotelDAO.findAllByStarRateAndHotelLocation(startRate,location));
+    }
+
    /* @Override
     public ArrayList<HotelDTO> filterHotelDetails(String startRate, String location) {
         return (ArrayList<HotelDTO>) hotelDAO.filterHotelDetails(startRate,location).stream().map(hotelEntity -> dataTypeConversion.getHotelDTO(hotelEntity)).collect(Collectors.toList());

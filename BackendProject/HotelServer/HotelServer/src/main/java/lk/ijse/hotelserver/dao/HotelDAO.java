@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public interface HotelDAO extends JpaRepository<HotelEntity,String> {
@@ -15,4 +16,9 @@ public interface HotelDAO extends JpaRepository<HotelEntity,String> {
     int getAllHotelCount();
 
 
+    boolean existsByStarRate(String startRate);
+
+    boolean existsByLocation(String location);
+
+    List<HotelEntity> findAllByStarRateAndHotelLocation(String startRate, String location);
 }

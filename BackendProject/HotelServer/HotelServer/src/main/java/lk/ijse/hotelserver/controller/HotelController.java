@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.Base64;
-
+import java.util.List;
 
 
 @RestController
@@ -59,7 +59,7 @@ public class HotelController {
                     cancellationCriteria,
                     Base64.getEncoder().encodeToString(hotelImage.getBytes())));
             System.out.println(hotelId);
-            return ResponseEntity.ok("Hotel created successfully");
+            return ResponseEntity.ok("Hotel saved successfully...!");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -137,11 +137,11 @@ public class HotelController {
     }
 
     //---------------------------Filter hotel details-----------------------------
-   /* @ResponseStatus(HttpStatus.CREATED)
+   @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/filterHotel", params = {"startRate", "locations"})
-    public ArrayList<HotelDTO> filterHotelDetails(@RequestParam String startRate, @RequestParam String location) {
-        return hotelService.filterHotelDetails(startRate, location);
-    }*/
+    public ResponseEntity<List<HotelDTO>> filterHotelDetails(@RequestParam String startRate, @RequestParam String location) {
+      return new ResponseEntity<>(hotelService.getAllHotelByStarRateAndLocation(startRate,location),HttpStatus.OK);
+    }
 
     //-----------------------------------------------------------------
 }
