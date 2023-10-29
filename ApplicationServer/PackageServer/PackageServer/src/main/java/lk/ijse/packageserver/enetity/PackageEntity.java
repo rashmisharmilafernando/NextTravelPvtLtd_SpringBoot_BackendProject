@@ -24,7 +24,7 @@ public class PackageEntity implements SuperEntity{
     private int dayCount;
     private int totalHeadCount;
 
-    @OneToMany(mappedBy = "package",cascade =CascadeType.REMOVE,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "packageId",cascade =CascadeType.REMOVE,fetch = FetchType.EAGER)
     List<BookingEntity> bookingEntities=new ArrayList<>();
 
 

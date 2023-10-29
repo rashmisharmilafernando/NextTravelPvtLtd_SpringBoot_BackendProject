@@ -21,8 +21,7 @@ public class BookingDTO {
     private double fullAmount;
     private String paymentSlip;
 
-
-    public BookingDTO(String bookingId, String startDate, String endDate, String nightCount, String dayCount, String adultsCount, String childrenCount, double fullAmount, String paymentSlip) {
+    public BookingDTO(String bookingId, String startDate, String endDate, String nightCount, String dayCount, String adultsCount, String childrenCount, double fullAmount) {
         this.bookingId = bookingId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -31,6 +30,5 @@ public class BookingDTO {
         this.adultsCount = adultsCount;
         this.childrenCount = childrenCount;
         this.fullAmount = fullAmount;
-        this.paymentSlip = paymentSlip;
     }
 }
