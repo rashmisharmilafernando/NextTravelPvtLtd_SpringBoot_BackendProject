@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,9 @@ public class PackageEntity implements SuperEntity{
     private int nightCount;
     private int dayCount;
     private int totalHeadCount;
+
+    @OneToMany(mappedBy = "package",cascade =CascadeType.REMOVE,fetch = FetchType.EAGER)
+    List<BookingEntity> bookingEntities=new ArrayList<>();
 
 
 }

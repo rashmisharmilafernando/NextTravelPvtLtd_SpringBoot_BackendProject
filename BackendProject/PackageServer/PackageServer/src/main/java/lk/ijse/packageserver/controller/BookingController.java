@@ -16,30 +16,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 // The @RequestMapping annotation specifies the base URL path for this controller.
-@RequestMapping("/booking")
-// The @RestController annotation indicates that this class is a RESTFull controller.
+@RequestMapping("api/v1/booking")
 @RestController
-// The @CrossOrigin annotation allows cross-origin requests from any origin.
 @CrossOrigin("*")
 public class BookingController {
-    // A field to store an instance of the BookingService, which provides booking-related functionality.
     private final BookingService bookingService;
-    private final PackageService packageService;
 
-    // Constructor for the BookingController class, accepting an instance of BookingService.
     public BookingController(BookingService bookingService, PackageService packageService) {
         this.bookingService = bookingService;
-        this.packageService = packageService;
     }
 
-
     //--------------------Save----------------------------------------------
-    // Indicates that this method responds with an HTTP status of 201 Created
     @ResponseStatus(HttpStatus.CREATED)
-    // Specifies that this method handles HTTP POST requests
     @PostMapping
     public ResponseUtil saveBooking(
-            // Request parameters are used to extract data from the request
             @RequestParam String bookingId,
             @RequestParam String startDate,
             @RequestParam String endDate,
@@ -48,8 +38,7 @@ public class BookingController {
             @RequestParam String adultsCount,
             @RequestParam String childrenCount,
             @RequestParam double fullAmount,
-            @RequestParam String paymentSlip,
-            @RequestParam PackageDTO packageId
+            @RequestParam String paymentSlip
     ) {
         if (paymentSlip.isEmpty()) {
             throw new RuntimeException("Payment-slip is empty...!");
@@ -65,8 +54,8 @@ public class BookingController {
                             adultsCount,
                             childrenCount,
                             fullAmount,
-                            Base64.getEncoder().encodeToString(paymentSlip.getBytes()),
-                            packageId
+                            Base64.getEncoder().encodeToString(paymentSlip.getBytes())
+
                     ));
              return new ResponseUtil("ok","Successfully Booking...!",null);
         } catch (Exception e) {
@@ -100,9 +89,7 @@ public class BookingController {
                     adultsCount,
                     childrenCount,
                     fullAmount,
-                    Base64.getEncoder().encodeToString(paymentSlip.getBytes()),
-                    packageId
-            );
+                    Base64.getEncoder().encodeToString(paymentSlip.getBytes()));
             bookingService.updateBooking(bookingDTO);
             return new ResponseUtil("OK", "Successfully updated....!" + bookingDTO.getBookingId(), null);
 
@@ -134,8 +121,8 @@ public class BookingController {
                         e.getAdultsCount(),
                         e.getChildrenCount(),
                         e.getFullAmount(),
-                        Base64.getDecoder().decode(e.getPaymentSlip()),
-                        e.getPackageId()
+                        Base64.getDecoder().decode(e.getPaymentSlip())
+
                 )
         ).collect(Collectors.toList());
         return new ResponseEntity<>(bookingResponses, HttpStatus.OK);
@@ -158,4 +145,5 @@ public class BookingController {
     }
 }
 
-///---------------------------------------------------------
+    //---------------------------------------------------------
+

@@ -20,7 +20,6 @@ public class BookingDTO {
     private String childrenCount;
     private double fullAmount;
     private String paymentSlip;
-    private PackageDTO packageId;
 
 
     public BookingDTO(String bookingId, String startDate, String endDate, String nightCount, String dayCount, String adultsCount, String childrenCount, double fullAmount, String paymentSlip) {

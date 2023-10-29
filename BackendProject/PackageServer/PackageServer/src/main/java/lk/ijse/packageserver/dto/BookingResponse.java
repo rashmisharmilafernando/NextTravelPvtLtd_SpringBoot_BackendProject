@@ -17,5 +17,4 @@ public class BookingResponse {
     private String childrenCount;
     private double fullAmount;
     private byte[] paymentSlip;
-    private PackageDTO packageId;
 }

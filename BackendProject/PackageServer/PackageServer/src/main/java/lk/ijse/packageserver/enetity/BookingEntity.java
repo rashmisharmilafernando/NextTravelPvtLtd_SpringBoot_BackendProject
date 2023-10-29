@@ -34,7 +34,7 @@ public class BookingEntity implements SuperEntity{
     private String paymentSlip;
 
     @ManyToOne
-    @JoinColumn(name = "packageId")
+    @JoinColumn(name = "packageId",referencedColumnName = "packageId")
     private PackageEntity packageId;
 
 }
