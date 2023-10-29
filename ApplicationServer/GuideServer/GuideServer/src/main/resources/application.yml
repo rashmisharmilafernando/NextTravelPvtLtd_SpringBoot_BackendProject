@@ -1,0 +1,11 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /guideServer
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/nextTravelGuideServer
+  application:
+    name: GuideService
