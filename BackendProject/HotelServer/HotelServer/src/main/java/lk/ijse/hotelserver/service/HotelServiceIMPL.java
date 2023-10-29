@@ -38,12 +38,16 @@ public class HotelServiceIMPL implements HotelService{
 
     @Override
     public void deleteHotel(String id) {
+        if (!hotelDAO.existsById(id)) {
+            throw new RuntimeException("Wrong ID..Please enter valid id..!");
+        }
         hotelDAO.deleteById(id);
     }
 
     @Override
-    public List<HotelDTO> getAllHotel() {
-        return hotelDAO.findAll().stream().map(hotel -> dataTypeConversion.getHotelDTO(hotel)).collect(Collectors.toList());
+    public ArrayList<HotelDTO> getAllHotel() {
+        List<HotelEntity> hotelEntities=hotelDAO.findAll();
+        return dataTypeConversion.hotelDTOListToHotelDTOList(hotelEntities);
     }
 
     @Override
@@ -65,8 +69,8 @@ public class HotelServiceIMPL implements HotelService{
         return new CustomDTO(hotelDAO.getAllHotelCount());
     }
 
-    @Override
+   /* @Override
     public ArrayList<HotelDTO> filterHotelDetails(String startRate, String location) {
         return (ArrayList<HotelDTO>) hotelDAO.filterHotelDetails(startRate,location).stream().map(hotelEntity -> dataTypeConversion.getHotelDTO(hotelEntity)).collect(Collectors.toList());
-    }
+    }*/
 }

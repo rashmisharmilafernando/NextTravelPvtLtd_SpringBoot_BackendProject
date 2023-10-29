@@ -10,30 +10,30 @@ import lombok.NoArgsConstructor;
 public class HotelRespone {
     private String hotelId;
     private String hotelName;
+    private String hotelRate;
+    private String hotelCategory;
     private String hotelLocation;
-    private String coordinates;
-    private String starRate;
-    private String packageCategory;
-    private String hotelContactNumberOne;
-    private String hotelContactNumberTwo;
-    private  boolean petsAllowedOrNot;
-    private  String cancelCriteria;
-    private  double hotelFee;
-    private String email;
-    private byte[] image;
+    private String hotelCoordinates;
+    private String hotelEmail;
+    private String hotelNumber1;
+    private String hotelNumber2;
+    private  String PetsAllowed;
+    private  double HotelFee;
+    private String CancellationCriteria;
+    private byte[] HotelImage;
 
-    public HotelRespone(String hotelId, String hotelName, String hotelLocation, String coordinates, String starRate, String packageCategory, String hotelContactNumberOne, String hotelContactNumberTwo, boolean petsAllowedOrNot, String cancelCriteria, double hotelFee, String email) {
+    public HotelRespone(String hotelId, String hotelName, String hotelRate, String hotelCategory, String hotelLocation, String hotelCoordinates, String hotelEmail, String hotelNumber1, String hotelNumber2, String petsAllowed, double hotelFee, String cancellationCriteria) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
+        this.hotelRate = hotelRate;
+        this.hotelCategory = hotelCategory;
         this.hotelLocation = hotelLocation;
-        this.coordinates = coordinates;
-        this.starRate = starRate;
-        this.packageCategory = packageCategory;
-        this.hotelContactNumberOne = hotelContactNumberOne;
-        this.hotelContactNumberTwo = hotelContactNumberTwo;
-        this.petsAllowedOrNot = petsAllowedOrNot;
-        this.cancelCriteria = cancelCriteria;
-        this.hotelFee = hotelFee;
-        this.email = email;
+        this.hotelCoordinates = hotelCoordinates;
+        this.hotelEmail = hotelEmail;
+        this.hotelNumber1 = hotelNumber1;
+        this.hotelNumber2 = hotelNumber2;
+        PetsAllowed = petsAllowed;
+        HotelFee = hotelFee;
+        CancellationCriteria = cancellationCriteria;
     }
 }

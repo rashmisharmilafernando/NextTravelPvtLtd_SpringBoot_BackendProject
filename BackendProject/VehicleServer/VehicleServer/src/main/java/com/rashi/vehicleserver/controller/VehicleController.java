@@ -140,22 +140,12 @@ public class VehicleController {
         return new ResponseUtil("Ok","Successfully",vehicleService.getAllVehicle());
     }
 
-
-
-
     //------- Auto Generate id--------------------------
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/autoGenerateId")
     public @ResponseBody CustomDTO vehicleGenerate() {
         System.out.println("autoGenerateId");
         return vehicleService.vehicleIdGenerate();
-    }
-
-    //------- Search Vehicle for vehicle table--------------------------
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/searchVehicle", params = {"vehicleId"})
-    public VehicleDTO searchVehicleId(String vehicle_Id) {
-        return vehicleService.searchVehicleId(vehicle_Id);
     }
 
     //-------Vehicle-Count------------------------------

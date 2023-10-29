@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 @Repository
 public interface HotelDAO extends JpaRepository<HotelEntity,String> {
-    @Query(value = "SELECT hotelId FROM HotelEntity ORDER BY hotelId DESC LIMIT 1",nativeQuery = true)
+    @Query(value = "SELECT hotelId FROM Hotel ORDER BY hotelId DESC LIMIT 1",nativeQuery = true)
     String getLastIndex();
-    @Query(value = "SELECT COUNT(hotelId) FROM HotelEntity",nativeQuery = true)
+    @Query(value = "SELECT COUNT(hotelId) FROM Hotel",nativeQuery = true)
     int getAllHotelCount();
 
-    ArrayList<HotelEntity> filterHotelDetails(String startRate, String location);
+
 }

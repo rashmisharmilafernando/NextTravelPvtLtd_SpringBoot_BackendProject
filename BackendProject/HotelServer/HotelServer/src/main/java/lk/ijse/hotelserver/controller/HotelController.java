@@ -1,24 +1,19 @@
 package lk.ijse.hotelserver.controller;
-
-
 import lk.ijse.hotelserver.dto.CustomDTO;
 import lk.ijse.hotelserver.dto.HotelDTO;
-import lk.ijse.hotelserver.dto.HotelRespone;
 import lk.ijse.hotelserver.service.HotelService;
 import lk.ijse.hotelserver.util.ResponseUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
-import java.util.stream.Collectors;
+
+
 
 @RestController
-@RequestMapping("/hotel")
-@CrossOrigin("*")
+@RequestMapping("api/v1/hotel")
+@CrossOrigin(origins = "http://localhost:63342")
 public class HotelController {
     private final HotelService hotelService;
 
@@ -29,47 +24,42 @@ public class HotelController {
     //------------------save hotel---------------------
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseUtil saveHotel(
-
-            @RequestParam String hotelId,
-            @RequestParam String hotelLocation,
-            @RequestParam String hotelName,
-            @RequestParam String coordinates,
-            @RequestParam String roomType,
-            @RequestParam String starRate,
-            @RequestParam String packageCategory,
-            @RequestParam String hotelContactNumber,
-            @RequestParam boolean petsAllowedOrNot,
-            @RequestParam String cancelCriteria,
-            @RequestParam String remarks,
-            @RequestParam double hotelFee,
-            @RequestParam String email,
-            @RequestParam MultipartFile hotelImage
+    public ResponseEntity<String> saveHotel(
+            @RequestParam(value ="hotel_Id") String hotelId,
+            @RequestParam(value ="hotel_Name") String hotelName,
+            @RequestParam(value ="hotel_Rate") String hotelRate,
+            @RequestParam(value ="hotel_Category") String hotelCategory,
+            @RequestParam(value ="hotel_Location") String hotelLocation,
+            @RequestParam(value ="hotel_Coordinates") String hotelCoordinates,
+            @RequestParam(value ="hotel_Email") String hotelEmail,
+            @RequestParam(value ="hotel_Number1") String hotelNumber1,
+            @RequestParam(value ="hotel_Number2") String hotelNumber2,
+            @RequestParam(value ="pets_Allowed") String petsAllowed,
+            @RequestParam(value ="hotel_Fee") double hotelFee,
+            @RequestParam(value ="cancellation_Criteria") String cancellationCriteria,
+            @RequestParam(value ="hotel_Image") MultipartFile hotelImage
     ) {
+        System.out.println( "hi: "+hotelId);
         if (hotelImage.isEmpty()) {
             throw new RuntimeException("This Hotel Image is Empty...!");
         }
         try {
-            String hotel_Image = Base64.getEncoder().encodeToString(hotelImage.getBytes());
-
-            HotelDTO hotelDTO = new HotelDTO(
-
+            hotelService.saveHotel(new HotelDTO(
                     hotelId,
-                    hotelLocation,
                     hotelName,
-                    coordinates,
-                    roomType,
-                    starRate,
-                    packageCategory,
-                    hotelContactNumber,
-                    petsAllowedOrNot,
-                    cancelCriteria,
-                    remarks,
+                    hotelRate,
+                    hotelCategory,
+                    hotelLocation,
+                    hotelCoordinates,
+                    hotelEmail,
+                    hotelNumber1,
+                    hotelNumber2,
+                    petsAllowed,
                     hotelFee,
-                    email,
-                    hotel_Image
-            );
-            return new ResponseUtil("OK", "Successfully Save hotel..!", null);
+                    cancellationCriteria,
+                    Base64.getEncoder().encodeToString(hotelImage.getBytes())));
+            System.out.println(hotelId);
+            return ResponseEntity.ok("Hotel created successfully");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -78,106 +68,80 @@ public class HotelController {
     //------------------update hotel---------------------
     @PutMapping("/update")
     public ResponseUtil updateHotel(
-            @RequestParam String hotelId,
-            @RequestParam String hotelLocation,
-            @RequestParam String hotelName,
-            @RequestParam String coordinates,
-            @RequestParam String roomType,
-            @RequestParam String starRate,
-            @RequestParam String packageCategory,
-            @RequestParam String hotelContactNumber,
-            @RequestParam boolean petsAllowedOrNot,
-            @RequestParam String cancelCriteria,
-            @RequestParam String remarks,
-            @RequestParam double hotelFee,
-            @RequestParam String email,
-            @RequestParam MultipartFile hotelImage
+            @RequestParam(value ="hotel_Id") String hotelId,
+            @RequestParam(value ="hotel_Name") String hotelName,
+            @RequestParam(value ="hotel_Rate") String hotelRate,
+            @RequestParam(value ="hotel_Category") String hotelCategory,
+            @RequestParam(value ="hotel_Location") String hotelLocation,
+            @RequestParam(value ="hotel_Coordinates") String hotelCoordinates,
+            @RequestParam(value ="hotel_Email") String hotelEmail,
+            @RequestParam(value ="hotel_Number1") String hotelNumber1,
+            @RequestParam(value ="hotel_Number2") String hotelNumber2,
+            @RequestParam(value ="pets_Allowed") String petsAllowed,
+            @RequestParam(value ="hotel_Fee") double hotelFee,
+            @RequestParam(value ="cancellation_Criteria") String cancellationCriteria,
+            @RequestParam(value ="hotel_Image") MultipartFile hotelImage
     ) {
         if (hotelImage.isEmpty()) {
             throw new RuntimeException("This Hotel Image is Empty...!");
         }
         try {
-            String hotel_Image = Base64.getEncoder().encodeToString(hotelImage.getBytes());
-
             HotelDTO hotelDTO = new HotelDTO(
-
                     hotelId,
-                    hotelLocation,
                     hotelName,
-                    coordinates,
-                    roomType,
-                    starRate,
-                    packageCategory,
-                    hotelContactNumber,
-                    petsAllowedOrNot,
-                    cancelCriteria,
-                    remarks,
+                    hotelRate,
+                    hotelCategory,
+                    hotelLocation,
+                    hotelCoordinates,
+                    hotelEmail,
+                    hotelNumber1,
+                    hotelNumber2,
+                    petsAllowed,
                     hotelFee,
-                    email,
-                    hotel_Image
-            );
+                    cancellationCriteria,
+                    Base64.getEncoder().encodeToString(hotelImage.getBytes()));
+
             return new ResponseUtil("OK", "Successfully Save hotel..!" + hotelDTO.getHotelId(), null);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    //------------------------delete hotel----------------------------
-    @DeleteMapping("id")
-    public ResponseUtil deleteHotel(@RequestParam String id) {
+    //------------------------Delete hotel----------------------------
+    @ResponseStatus(HttpStatus.CREATED)
+    @DeleteMapping(params = {"id"})
+    public ResponseEntity<String> deleteHotel(@RequestParam String id) {
         hotelService.deleteHotel(id);
-        return new ResponseUtil("ok", "Successfully Deleted..!" + id, null);
+        return ResponseEntity.ok("Hotel deleted successfully.");
     }
 
     //--------------------load the data to table------------------------------------
-    @GetMapping("/loadAllHotel")
-    public ResponseEntity<List<HotelRespone>> getAllHotel() {
-        List<HotelRespone> hotelResponeList = hotelService.getAllHotel().stream().map(e ->
-                new HotelRespone(
-                        e.getHotelId(),
-                        e.getHotelName(),
-                        e.getHotelLocation(),
-                        e.getCoordinates(),
-                        e.getStarRate(),
-                        e.getPackageCategory(),
-                        e.getHotelContactNumberOne(),
-                        e.getHotelContactNumberTwo(),
-                        e.isPetsAllowedOrNot(),
-                        e.getCancelCriteria(),
-                        e.getHotelFee(),
-                        e.getEmail()
-                )
-        ).collect(Collectors.toList());
-        return new ResponseEntity<>(hotelResponeList, HttpStatus.OK);
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/loadAllHotel")
+    public ResponseUtil getAllHotel() {
+        return new ResponseUtil("Ok","Successfully",hotelService.getAllHotel());
     }
 //-------------------Auto generate id------------------------------
 
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping("/autoGenerateId")
+    @GetMapping(path = "/autoGenerateId")
     public @ResponseBody CustomDTO hotelIdGenerate() {
         return hotelService.hotelIdGenerate();
-    }
-
-    //------------------------Search hotel for hotel table--------------------------
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/searchHotel", params = {"hotelId"})
-    public HotelDTO searchHotelId(String hotel_id) {
-        return hotelService.searchHotelId(hotel_id);
     }
 
     //-------------------------------Hotel count-----------------------------
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/hotelCount")
-    public @ResponseBody CustomDTO getHotelCount(){
+    public @ResponseBody CustomDTO getHotelCount() {
         return hotelService.getAllHotelCount();
     }
 
     //---------------------------Filter hotel details-----------------------------
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/filterHotel",params = {"startRate","locations"})
-    public ArrayList<HotelDTO> filterHotelDetails(@RequestParam String startRate,@RequestParam String location){
-        return hotelService.filterHotelDetails(startRate,location);
-    }
+   /* @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/filterHotel", params = {"startRate", "locations"})
+    public ArrayList<HotelDTO> filterHotelDetails(@RequestParam String startRate, @RequestParam String location) {
+        return hotelService.filterHotelDetails(startRate, location);
+    }*/
 
     //-----------------------------------------------------------------
 }

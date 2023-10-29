@@ -10,32 +10,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "Hotel")
 public class HotelEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String hotelId;
-    @Column(nullable = false)
     private String hotelName;
-    @Column(nullable = false)
+    private String hotelRate;
+    private String hotelCategory;
     private String hotelLocation;
-    @Column(nullable = false)
-    private String coordinates;
-    @Column(nullable = false)
-    private String starRate;
-    @Column(nullable = false)
-    private String packageCategory;
-    @Column(nullable = false)
-    private String hotelContactNumberOne;
-    @Column(nullable = false)
-    private String hotelContactNumberTwo;
-    @Column(nullable = false)
-    private  boolean petsAllowedOrNot;
-    @Column(nullable = false)
-    private  String cancelCriteria;
-    @Column(nullable = false)
-    private  double hotelFee;
-    @Column(nullable = false)
-    private String email;
+    private String hotelCoordinates;
+    private String hotelEmail;
+    private String hotelNumber1;
+    private String hotelNumber2;
+    private String PetsAllowed;
+    private double HotelFee;
+    private String CancellationCriteria;
     @Column(columnDefinition = "LONGTEXT")
-    private String image;
+    private String HotelImage;
 }

@@ -14,7 +14,7 @@ public interface HotelService {
 
     void deleteHotel(String id);
 
-    List<HotelDTO> getAllHotel();
+    ArrayList<HotelDTO> getAllHotel();
 
     CustomDTO hotelIdGenerate();
 
@@ -22,5 +22,5 @@ public interface HotelService {
 
     CustomDTO getAllHotelCount();
 
-    ArrayList<HotelDTO> filterHotelDetails(String startRate, String location);
+    /*ArrayList<HotelDTO> filterHotelDetails(String startRate, String location);*/
 }
