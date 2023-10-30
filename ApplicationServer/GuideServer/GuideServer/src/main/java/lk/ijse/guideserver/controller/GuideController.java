@@ -76,7 +76,7 @@ public class GuideController {
     }
 //----------------------------GET--ALL--GUIDE---------------------
 
-    @GetMapping
+   /* @GetMapping
     public ResponseEntity<List<GuideResponse>> getAllGuide(){
         List<GuideResponse>guideResponses=guideServer.getAllGuide().stream().map(e ->
                 new GuideResponse(
@@ -86,7 +86,7 @@ public class GuideController {
                 )
         ).collect(Collectors.toList());
         return new ResponseEntity<>(guideResponses,HttpStatus.OK);
-    }
+    }*/
 
 
 
