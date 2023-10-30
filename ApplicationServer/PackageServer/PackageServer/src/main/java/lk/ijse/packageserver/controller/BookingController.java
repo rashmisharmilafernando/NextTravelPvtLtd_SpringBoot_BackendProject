@@ -66,16 +66,15 @@ public class BookingController {
 //--------------------Update----------------------------------------------
 
     @PutMapping
-    public ResponseUtil updateBooking(@RequestParam String bookingId,
-                                      @RequestParam String startDate,
-                                      @RequestParam String endDate,
-                                      @RequestParam String nightCount,
-                                      @RequestParam String dayCount,
-                                      @RequestParam String adultsCount,
-                                      @RequestParam String childrenCount,
-                                      @RequestParam double fullAmount,
-                                      @RequestParam String paymentSlip,
-                                      @RequestParam PackageDTO packageId) {
+    public ResponseUtil updateBooking(        @RequestParam String bookingId,
+                                              @RequestParam String startDate,
+                                              @RequestParam String endDate,
+                                              @RequestParam String nightCount,
+                                              @RequestParam String dayCount,
+                                              @RequestParam String adultsCount,
+                                              @RequestParam String childrenCount,
+                                              @RequestParam double fullAmount,
+                                              @RequestParam String paymentSlip) {
         if (paymentSlip.isEmpty()) {
             throw new RuntimeException("Payment-slip is empty...!");
         }
