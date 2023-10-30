@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Base64;;
 
 @RestController
-@RequestMapping("/guide")
+@RequestMapping("api/v1/guide")
 @CrossOrigin("*")
 public class GuideController {
 
