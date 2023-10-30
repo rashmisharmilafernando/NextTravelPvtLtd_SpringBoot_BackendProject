@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+
 public class GuideEntity {
     @Id
 

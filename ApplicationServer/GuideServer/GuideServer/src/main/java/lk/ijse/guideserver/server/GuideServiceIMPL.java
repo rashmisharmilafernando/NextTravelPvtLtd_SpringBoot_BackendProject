@@ -1,6 +1,7 @@
 package lk.ijse.guideserver.server;
 
 import lk.ijse.guideserver.dao.GuideDAO;
+import lk.ijse.guideserver.dto.CustomDTO;
 import lk.ijse.guideserver.dto.GuideDTO;
 import lk.ijse.guideserver.entity.GuideEntity;
 import lk.ijse.guideserver.util.DataConvertor;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,22 +31,36 @@ public class GuideServiceIMPL implements GuideService{
     }
 
     @Override
-    public void updateGuide(String id, GuideDTO guideDTO) {
+    public void updateGuide(GuideDTO guideDTO) {
+        if (!guideDAO.existsById(guideDTO.getGuideId())){
+            throw new RuntimeException("Guide not Exist...!");
+        }
         guideDAO.save(dataConvertor.getGuideEntity(guideDTO));
     }
 
     @Override
     public void deleteGuide(String id) {
+        if (!guideDAO.existsById(id)){
+            throw new RuntimeException("Wrong ID..Please enter valid id..!");
+        }
         guideDAO.deleteById(id);
     }
 
     @Override
-    public List<GuideDTO> getAllGuide() {
-        return null;
+    public ArrayList<GuideDTO> getAllGuide() {
+        List<GuideEntity> guideEntities= (List<GuideEntity>) guideDAO.findAll();
+       return dataConvertor.guideDTOListToGuideEntityList(guideEntities);
     }
 
-   /* @Override
-    public List<GuideDTO> getAllGuide() {
-        return guideDAO.findAll().stream().map(guideEntity -> dataConvertor.getGuideDTO(guideEntity)).collect(Collectors.toList());
-    }*/
+    @Override
+    public CustomDTO guideIdGenerate() {
+        return new CustomDTO(guideDAO.getLastIndex());
+    }
+
+    @Override
+    public CustomDTO getAllGuideCount() {
+        return new CustomDTO((int) guideDAO.count());
+    }
+
+
 }
