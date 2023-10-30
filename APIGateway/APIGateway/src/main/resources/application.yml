@@ -22,6 +22,24 @@ spring:
           predicates:
           - Path=/hotelServer/**
 
+        - id: vehicle-server
+          uri: lb://Vehicle-SERVER
+          predicates:
+            - Path=/vehicleServer/**
 
+        - id: user-server
+          uri: lb://USER-SERVER
+          predicates:
+            - Path=/userServer/**
+
+        - id: package-server
+          uri: lb://PACKAGE-SERVER
+          predicates:
+            - Path=/packageServer/**
+
+        - id: guide-server
+          uri: lb://GUIDE-SERVER
+          predicates:
+            - Path=/guideServer/**
 
 
