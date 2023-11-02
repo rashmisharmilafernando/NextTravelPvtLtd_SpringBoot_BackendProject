@@ -24,33 +24,32 @@ public class GuideController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ResponseEntity<String> saveGuide(
-            @RequestParam String guideId,
-            @RequestParam String guideName,
-            @RequestParam String address,
-            @RequestParam String gender,
-            @RequestParam String number,
-            @RequestParam String experience,
-            @RequestParam double manDayValue,
-            @RequestParam String guideImage,
-            @RequestParam String nicImage,
-            @RequestParam String guideIDImage
+            @RequestParam(value = "guide_id") String guide_id,
+            @RequestParam(value = "guide_Name") String guide_Name,
+            @RequestParam(value = "guide_Address") String guide_Address,
+            @RequestParam(value = "guide_Gender") String guide_Gender,
+            @RequestParam(value = "guide_Number") String guide_Number,
+            @RequestParam(value = "guide_Experience") String guide_Experience,
+            @RequestParam(value = "guide_Day_Value") double guide_Day_Value,
+            @RequestParam(value = "Guide_Image") String Guide_Image,
+            @RequestParam(value = "Nic_Image") String Nic_Image,
+            @RequestParam(value = "Guide_ID_Image") String Guide_ID_Image
     ) {
-        if (guideImage.isEmpty() && nicImage.isEmpty() && guideIDImage.isEmpty()) {
+        if (Guide_Image.isEmpty() && Nic_Image.isEmpty() && Guide_ID_Image.isEmpty()) {
             throw new RuntimeException("Empty...!");
         }
         try {
             guideServer.saveGuide(new GuideDTO(
-                    guideId,
-                    guideName,
-                    address,
-                    gender,
-                    number,
-                    experience,
-                    manDayValue,
-                    Base64.getEncoder().encodeToString(guideImage.getBytes()),
-                    Base64.getEncoder().encodeToString(nicImage.getBytes()),
-                    Base64.getEncoder().encodeToString(guideIDImage.getBytes())));
-
+                    guide_id,
+                    guide_Name,
+                    guide_Address,
+                    guide_Gender,
+                    guide_Number,
+                    guide_Experience,
+                    guide_Day_Value,
+                    Base64.getEncoder().encodeToString(Guide_Image.getBytes()),
+                    Base64.getEncoder().encodeToString(Nic_Image.getBytes()),
+                    Base64.getEncoder().encodeToString(Guide_ID_Image.getBytes())));
             return ResponseEntity.ok("Guide created successfully..!");
 
         } catch (Exception e) {
@@ -61,31 +60,32 @@ public class GuideController {
     //--------------------------UPDATE----------------------------------
     @PutMapping("/update")
     public ResponseUtil updateGuide(
-            @RequestParam String guideId,
-            @RequestParam String guideName,
-            @RequestParam String address,
-            @RequestParam String gender,
-            @RequestParam String number,
-            @RequestParam String experience,
-            @RequestParam double manDayValue,
-            @RequestParam String guideImage,
-            @RequestParam String nicImage,
-            @RequestParam String guideIDImage) {
-        if (guideImage.isEmpty() && nicImage.isEmpty() && guideIDImage.isEmpty()) {
+            @RequestParam(value = "guide_id") String guide_id,
+            @RequestParam(value = "guide_Name") String guide_Name,
+            @RequestParam(value = "guide_Address") String guide_Address,
+            @RequestParam(value = "guide_Gender") String guide_Gender,
+            @RequestParam(value = "guide_Number") String guide_Number,
+            @RequestParam(value = "guide_Experience") String guide_Experience,
+            @RequestParam(value = "guide_Day_Value") double guide_Day_Value,
+            @RequestParam(value = "Guide_Image") String Guide_Image,
+            @RequestParam(value = "Nic_Image") String Nic_Image,
+            @RequestParam(value = "Guide_ID_Image") String Guide_ID_Image)
+    {
+        if (Guide_Image.isEmpty() && Nic_Image.isEmpty() && Guide_ID_Image.isEmpty()) {
             throw new RuntimeException("Empty...!");
         }
         try {
             guideServer.updateGuide(new GuideDTO(
-                    guideId,
-                    guideName,
-                    address,
-                    gender,
-                    number,
-                    experience,
-                    manDayValue,
-                    Base64.getEncoder().encodeToString(guideImage.getBytes()),
-                    Base64.getEncoder().encodeToString(nicImage.getBytes()),
-                    Base64.getEncoder().encodeToString(guideIDImage.getBytes())));
+                    guide_id,
+                    guide_Name,
+                    guide_Address,
+                    guide_Gender,
+                    guide_Number,
+                    guide_Experience,
+                    guide_Day_Value,
+                    Base64.getEncoder().encodeToString(Guide_Image.getBytes()),
+                    Base64.getEncoder().encodeToString(Nic_Image.getBytes()),
+                    Base64.getEncoder().encodeToString(Guide_ID_Image.getBytes())));
 
             return new ResponseUtil("OK", "Update is Successfully...!", null);
 
@@ -112,7 +112,7 @@ public class GuideController {
 
     //------- Auto Generate id--------------------------
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/autoGenerateId")
+    @GetMapping(path = "/autoGenerateid")
     public @ResponseBody CustomDTO guideIdGenerate() {
         System.out.println("autoGenerateId");
         return guideServer.guideIdGenerate();

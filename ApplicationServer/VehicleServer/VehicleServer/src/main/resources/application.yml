@@ -27,8 +27,10 @@ spring:
     properties:
       hibernate:
         format_sql : true
+
   application:
     name: VEHICLE-SERVER
+
 server:
   port: 8090
   servlet:

@@ -13,16 +13,26 @@ public interface VehicleService {
 
     void deleteVehicle(String vehicleId);
 
-    ArrayList<VehicleDTO> getAllVehicle();
+    List<VehicleDTO> getAllVehicle();
 
-    CustomDTO vehicleIdGenerate();
-
-    VehicleDTO searchVehicleId(String vehicleId);
-
-    CustomDTO getAllVehicleCount();
-
-    ArrayList<VehicleDTO> flterVehicleDetails(String passengers, String transmission, String fuelType);
+   /* CustomDTO vehicleIdGenerate();*/
 
 
-    /*void update(VehicleDTO vehicleDTO);*/
+  /*  CustomDTO getAllVehicleCount();*/
+
+
+    List<VehicleDTO> flterVehicleDetails(
+            String category,
+            int passengers,
+            String transmission,
+            String fuelType);
+
+
+    String vehicleIdGenerate();
+
+    int getAllVehicleCount();
+
+    List<VehicleDTO> getAllVehicleByPackage(String vehicleCategory);
+
+    VehicleDTO getAllVehicleByRegId(String registrationNumber);
 }

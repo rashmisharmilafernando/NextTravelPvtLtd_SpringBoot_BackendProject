@@ -52,29 +52,41 @@ public class VehicleServerIMPL implements VehicleService{
     }
 
     @Override
-    public CustomDTO vehicleIdGenerate() {
-        return new CustomDTO(vehicleDAO.getLastIndex());
-    }
-
-    @Override
-    public VehicleDTO searchVehicleId(String vehicleId) {
-        if (!vehicleDAO.existsById(vehicleId)){
-            throw new RuntimeException("Wrong ID...!");
-        }
-        VehicleEntity vehicleEntity = vehicleDAO.findById(vehicleId).get();
-        return dataTypeConvertor.getVehicleDTO(vehicleEntity);
+    public List<VehicleDTO> flterVehicleDetails(
+            String category,
+            int passengers,
+            String transmission,
+            String fuelType
+    ) {
+        return dataTypeConvertor.vehicleDTOListTovehicleDTOList(vehicleDAO.findAllByVehicleCategoryAndVehicleSeatCapacityAndTransmissionTypeAndVehicleFueltype(category,passengers,transmission,fuelType));
 
     }
 
     @Override
-    public CustomDTO getAllVehicleCount() {
-        return new CustomDTO(vehicleDAO.getAllVehicleCount());
+    public String vehicleIdGenerate() {
+        return vehicleDAO.getLastIndex();
+    }
+
+
+    @Override
+    public int getAllVehicleCount() {
+        return  vehicleDAO.getAllVehicleCount();
     }
 
     @Override
-    public ArrayList<VehicleDTO> flterVehicleDetails(String passengers, String transmission, String fuelType) {
-        return (ArrayList<VehicleDTO>) vehicleDAO.filterVehicleDetails(passengers,transmission,fuelType).stream().map(vehicle ->dataTypeConvertor.getVehicleDTO(vehicle)).collect(Collectors.toList());
+    public List<VehicleDTO> getAllVehicleByPackage(String vehicleCategory) {
+       if (!vehicleDAO.existsById(vehicleCategory))
+           throw new RuntimeException(vehicleCategory+ "type vehicle not found...!");
+       return dataTypeConvertor.vehicleDTOListTovehicleDTOList(vehicleDAO.findAllByVehicleCategory(vehicleCategory));
     }
+
+    @Override
+    public VehicleDTO getAllVehicleByRegId(String registrationNumber) {
+        if (!vehicleDAO.existsById(registrationNumber))
+            throw new RuntimeException(registrationNumber+" Car not found..!! ");
+        return dataTypeConvertor.getVehicleDTO(vehicleDAO.findById(registrationNumber).get());
+    }
+
 
 
 }

@@ -12,10 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:63342")
-@RequestMapping("api/v1/vehicle")
+@RequestMapping("api/v1/Vehicle")
 public class VehicleController {
 
 
@@ -77,7 +78,7 @@ public class VehicleController {
     }
 
     //----------------------------------------Update------------------------------------
-    @PutMapping("/update")
+    @PutMapping
     public ResponseUtil  UpdateVehicle(
             @RequestParam(value ="vehicleId") String vehicleId,
             @RequestParam(value ="vehicleRegId") String vehicleRegId,
@@ -125,9 +126,9 @@ public class VehicleController {
 
     //------------------------------Delete----------------------------------
     @ResponseStatus(HttpStatus.CREATED)
-    @DeleteMapping(params = {"id"})
-    public ResponseEntity<String> deleteVehicle(@RequestParam String id) {
-        vehicleService.deleteVehicle(id);
+    @DeleteMapping(params = {"vehicleRegId"})
+    public ResponseEntity<String> deleteVehicle(@RequestParam String vehicleRegId) {
+        vehicleService.deleteVehicle(vehicleRegId);
         return ResponseEntity.ok("Vehicle deleted successfully.");
     }
 
@@ -135,33 +136,51 @@ public class VehicleController {
     //---------------Get All--------------------------------------------------
 
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/loadAllVehicle")
-    public ResponseUtil getAllCar() {
-        return new ResponseUtil("Ok","Successfully",vehicleService.getAllVehicle());
+    @GetMapping
+    public ResponseEntity<List<VehicleDTO>> getAllCar() {
+        return new ResponseEntity<>(vehicleService.getAllVehicle(),HttpStatus.OK);
     }
 
     //------- Auto Generate id--------------------------
-    @ResponseStatus(HttpStatus.CREATED)
+    /*@ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/autoGenerateId")
     public @ResponseBody CustomDTO vehicleGenerate() {
         System.out.println("autoGenerateId");
         return vehicleService.vehicleIdGenerate();
+    }*/
+    @GetMapping(path = "/getLastId")
+    public ResponseEntity<String> vehicleGenerate() {
+        System.out.println("autoGenerateId");
+        return new ResponseEntity<>(vehicleService.vehicleIdGenerate(),HttpStatus.OK);
     }
 
     //-------Vehicle-Count------------------------------
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/vehiclesCount")
-    public @ResponseBody CustomDTO getSumVehicle() {
-        return vehicleService.getAllVehicleCount();
+
+    @GetMapping(path = "/getCountOfVehicles")
+    public ResponseEntity<Integer>  getSumVehicle() {
+        return new ResponseEntity<>(vehicleService.getAllVehicleCount(),HttpStatus.OK);
     }
 
-    //-------Filter Vehicle details------------------------------
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/filterVehicle", params = {"passengers", "transmission", "fuelType"})
-    public ArrayList<VehicleDTO> filterVehicleDetails(@RequestParam String passengers, @RequestParam String transmission, @RequestParam String fuelType) {
-        return vehicleService.flterVehicleDetails(passengers, transmission, fuelType);
+    //-------Filter Vehicle details according to packageName------------------------------
+
+    @GetMapping(path = "/filterVehicle", params = {"vehicleCategory", "vehicleSeatCapacity", "transmissionType","vehicleFueltype"})
+    public ResponseEntity<List<VehicleDTO>> filterVehicleDetails(@RequestParam String vehicleCategory,@RequestParam int passengers, @RequestParam String transmission, @RequestParam String fuelType) {
+        return new ResponseEntity<>(vehicleService.flterVehicleDetails(vehicleCategory,passengers, transmission, fuelType),HttpStatus.OK);
     }
-    //-----------------------------------------------------------------
+
+    //-----------------------filter Vehicle By packageName------------------------------------------
+
+    @GetMapping(path = "/getAllVehiclesByCategory",params = {"vehicleCategory"})
+    public ResponseEntity<List<VehicleDTO>> filterAllVehicle(String vehicleCategory){
+        return new ResponseEntity<>(vehicleService.getAllVehicleByPackage(vehicleCategory),HttpStatus.OK);
+    }
+
+    //-------------Get registration numbers----------------------
+
+    @GetMapping(params = "registrationNumber")
+    public ResponseEntity<VehicleDTO> getVehicle(String registrationNumber){
+        return new ResponseEntity<>(vehicleService.getAllVehicleByRegId(registrationNumber),HttpStatus.OK);
+    }
 
 
 }

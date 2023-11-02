@@ -23,7 +23,7 @@ spring:
           - Path=/hotelServer/**
 
         - id: vehicle-server
-          uri: lb://Vehicle-SERVER
+          uri: lb://VEHICLE-SERVER
           predicates:
             - Path=/vehicleServer/**
 

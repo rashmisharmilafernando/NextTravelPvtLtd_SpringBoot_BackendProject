@@ -6,6 +6,8 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/nextTravelGuideServer
+      database: nextTravelGuideDatabase
+      host: localhost
+      port: 27017
   application:
-    name: GuideService
+    name: GUIDE-SERVER
