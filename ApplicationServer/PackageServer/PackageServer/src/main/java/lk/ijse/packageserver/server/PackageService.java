@@ -24,5 +24,7 @@ public interface PackageService {
 
     CustomDTO getAllPackageCount();
 
-    ArrayList<PackageDTO> filterPackageName(String packageCategory,double price);
+    PackageDTO filterPackageName(String packageCategory);
+
+    List<PackageDTO> getAllPackages();
 }

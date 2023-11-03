@@ -20,4 +20,6 @@ public interface PackageDAO extends JpaRepository<PackageEntity,String> {
 
     @Query(value = "SELECT * FROM Package WHERE packageCategory=?1 or price=?2", nativeQuery = true)
     ArrayList<PackageEntity> filterPackageName(String packageName,double packagePrice);
+
+    PackageEntity findPackageByPackageCategory(String packageName);
 }

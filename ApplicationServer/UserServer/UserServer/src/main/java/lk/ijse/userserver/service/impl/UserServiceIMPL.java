@@ -1,5 +1,6 @@
 package lk.ijse.userserver.service.impl;
 
+import com.rashi.userserver.dto.CustomDTO;
 import lk.ijse.userserver.dao.UserDAO;
 import lk.ijse.userserver.dto.UsersDTO;
 import lk.ijse.userserver.entity.UserEntity;
@@ -59,8 +60,8 @@ public class UserServiceIMPL implements Userservice {
     }
 
     @Override
-    public String getLastIndex() {
-        return userDAO.getLastIndex();
+    public CustomDTO getLastIndex() {
+        return new  CustomDTO (userDAO.getLastIndex());
     }
 
     @Override

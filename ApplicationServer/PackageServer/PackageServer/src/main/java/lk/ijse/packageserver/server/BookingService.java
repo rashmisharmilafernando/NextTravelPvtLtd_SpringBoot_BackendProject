@@ -1,6 +1,7 @@
 package lk.ijse.packageserver.server;
 
 import lk.ijse.packageserver.dto.BookingDTO;
+import lk.ijse.packageserver.dto.BookingResponse;
 import lk.ijse.packageserver.dto.CustomDTO;
 import lk.ijse.packageserver.dto.PackageDTO;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,7 @@ public interface BookingService {
 
     CustomDTO getAllBookingCount();
 
-    PackageDTO getPackageById(String packageId);
+    BookingResponse getBookingByUserId(String userId);
+
+    List<BookingResponse> getBookingsByUserId(String userId);
 }

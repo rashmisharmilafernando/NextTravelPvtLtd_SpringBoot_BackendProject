@@ -30,4 +30,7 @@ public class DataTypeConversion {
         }.getType());
 
     }
+    public List<HotelDTO> hotelEntityListToHotelDTOList(List<HotelEntity> hotels){
+        return modelMapper.map(hotels,new TypeToken<List<HotelDTO>>(){}.getType());
+    }
 }

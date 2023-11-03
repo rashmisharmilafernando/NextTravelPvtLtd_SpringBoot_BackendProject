@@ -63,14 +63,14 @@ public class VehicleServerIMPL implements VehicleService{
     }
 
     @Override
-    public String vehicleIdGenerate() {
-        return vehicleDAO.getLastIndex();
+    public CustomDTO vehicleIdGenerate() {
+        return new CustomDTO(vehicleDAO.getLastIndex());
     }
 
 
     @Override
-    public int getAllVehicleCount() {
-        return  vehicleDAO.getAllVehicleCount();
+    public CustomDTO getAllVehicleCount() {
+        return new CustomDTO(vehicleDAO.getAllVehicleCount());
     }
 
     @Override

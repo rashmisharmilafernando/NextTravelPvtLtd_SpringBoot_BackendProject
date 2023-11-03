@@ -28,9 +28,9 @@ public interface VehicleService {
             String fuelType);
 
 
-    String vehicleIdGenerate();
+    CustomDTO vehicleIdGenerate();
 
-    int getAllVehicleCount();
+    CustomDTO getAllVehicleCount();
 
     List<VehicleDTO> getAllVehicleByPackage(String vehicleCategory);
 

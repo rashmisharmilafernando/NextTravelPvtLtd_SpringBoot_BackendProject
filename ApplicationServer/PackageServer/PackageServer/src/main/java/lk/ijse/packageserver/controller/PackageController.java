@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:63342")
@@ -57,12 +58,6 @@ public class PackageController {
     }
 
 
-    //-----Search package for package table-----------
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/searchPackage",params = {"packageId"})
-    public PackageDTO searchPackageId(String packageId){
-        return packageService.searchPackage(packageId);
-    }
 
     //-------Package-Count------------------------------
     @ResponseStatus(HttpStatus.CREATED)
@@ -72,11 +67,22 @@ public class PackageController {
     }
 
 
-    //-------Filter package Name------------------------------
+    //-------get package Name------------------------------
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/filterPackage",params = {"packageCategory","price"})
-    public ArrayList<PackageDTO> filterPackageName(@RequestParam String packageCategory,@RequestParam double price){
-        return packageService.filterPackageName(packageCategory,price);
+    @GetMapping(path = "/filterPackage",params = {"packageCategoryByPackageCategory"})
+    public ResponseEntity<PackageDTO> filterPackageName(@RequestParam String packageCategory){
+        return new ResponseEntity<>(packageService.filterPackageName(packageCategory),HttpStatus.OK);
+    }
+
+    //------------get all package names---------------------
+    @GetMapping(path = "/getPackageNameList")
+    public ResponseEntity<List<String>> getPackageNameList(){
+        List<String> packageNameList = null;
+        List<PackageDTO> allPackages = packageService.getAllPackages();
+        for(PackageDTO packageDTO : allPackages){
+            packageNameList.add(packageDTO.getPackageCategory());
+        }
+        return new ResponseEntity<>(packageNameList,HttpStatus.OK);
     }
 
 }

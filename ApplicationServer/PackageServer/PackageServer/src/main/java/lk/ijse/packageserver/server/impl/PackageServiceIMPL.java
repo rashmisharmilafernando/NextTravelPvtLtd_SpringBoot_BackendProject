@@ -75,8 +75,13 @@ public class PackageServiceIMPL implements PackageService {
     }
 
     @Override
-    public ArrayList<PackageDTO> filterPackageName(String packageName,double packagePrice) {
-        return (ArrayList<PackageDTO>) packageDAO.filterPackageName(packageName,packagePrice).stream().map(packageEntity ->dataConvertor.getPackageDTO(packageEntity)).collect(Collectors.toList());
+    public PackageDTO filterPackageName(String packageName) {
+        return dataConvertor.getPackageDTO(packageDAO.findPackageByPackageCategory(packageName));
+    }
+
+    @Override
+    public List<PackageDTO> getAllPackages() {
+        return dataConvertor.packageEntityListToPackageDTOList(packageDAO.findAll());
     }
 
 }

@@ -1,7 +1,9 @@
 package lk.ijse.packageserver.util;
 
 import lk.ijse.packageserver.dto.BookingDTO;
+import lk.ijse.packageserver.dto.BookingResponse;
 import lk.ijse.packageserver.dto.PackageDTO;
+import lk.ijse.packageserver.dto.PaymentDTO;
 import lk.ijse.packageserver.enetity.BookingEntity;
 import lk.ijse.packageserver.enetity.PackageEntity;
 import lk.ijse.packageserver.server.BookingService;
@@ -57,6 +59,21 @@ public class DataConvertor {
         return modelMapper.map(bookingEntity, BookingDTO.class);
     }
 
+    public BookingResponse bookingEntityToBookingGetDto(BookingEntity bookingEntity){
+        BookingResponse bookingGetDTO=modelMapper.map(bookingEntity,BookingResponse.class);
+        bookingGetDTO.setPackageDTO(getPackageDTO(bookingEntity.getPackageId()));
+        return bookingGetDTO;
+    }
 
+    public List<BookingResponse> bookingEntityListToBookingGetDTOList(List<BookingEntity> bookings){
+        return modelMapper.map(bookings,new TypeToken<List<BookingResponse>>(){}.getType());
+    }
 
+    public PackageEntity paymentDtoToPaymentEntity(PaymentDTO paymentDTO) {
+        return modelMapper.map(paymentDTO,PackageEntity.class);
+    }
+
+    public List<PackageDTO> packageEntityListToPackageDTOList(List<PackageEntity> packages) {
+        return modelMapper.map(packages,new TypeToken<List<PackageDTO>>(){}.getType());
+    }
 }

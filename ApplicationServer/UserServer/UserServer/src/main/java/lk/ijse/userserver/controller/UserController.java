@@ -1,5 +1,7 @@
 package lk.ijse.userserver.controller;
 
+
+import com.rashi.userserver.dto.CustomDTO;
 import lk.ijse.userserver.dto.UsersDTO;
 import lk.ijse.userserver.service.Userservice;
 import lk.ijse.userserver.util.RoleType;
@@ -114,9 +116,10 @@ public class UserController {
     //---------Auto generate user id-------------------
 
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/registerUserIdGenerate")
-    public ResponseEntity<String> getLastId(){
-        return new ResponseEntity<>(userservice.getLastIndex(),HttpStatus.OK);
+    @GetMapping(path = "/autoGenerateId")
+    public @ResponseBody CustomDTO vehicleGenerate() {
+        System.out.println("autoGenerateId");
+        return userservice.getLastIndex();
     }
 
     //------------------user Count---------------------------

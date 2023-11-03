@@ -1,5 +1,6 @@
 package lk.ijse.userserver.service;
 
+import com.rashi.userserver.dto.CustomDTO;
 import lk.ijse.userserver.dto.UsersDTO;
 import lk.ijse.userserver.util.RoleType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public interface Userservice {
 
     List<UsersDTO> getAllUsers();
 
-    String getLastIndex();
+    CustomDTO getLastIndex();
 
     int countByRoleType(RoleType roleType);
 

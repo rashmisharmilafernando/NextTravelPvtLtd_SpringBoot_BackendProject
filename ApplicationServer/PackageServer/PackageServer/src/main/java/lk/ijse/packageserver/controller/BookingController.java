@@ -29,78 +29,25 @@ public class BookingController {
     //--------------------Save----------------------------------------------
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseUtil saveBooking(
-            @RequestParam String bookingId,
-            @RequestParam String startDate,
-            @RequestParam String endDate,
-            @RequestParam String nightCount,
-            @RequestParam String dayCount,
-            @RequestParam String adultsCount,
-            @RequestParam String childrenCount,
-            @RequestParam double fullAmount,
-            @RequestParam String paymentSlip
+    public ResponseUtil saveBooking(@RequestBody BookingDTO bookingDTO
     ) {
-        if (paymentSlip.isEmpty()) {
-            throw new RuntimeException("Payment-slip is empty...!");
-        }
-        try {
-            bookingService.saveBooking(
-                    new BookingDTO(
-                            bookingId,
-                            startDate,
-                            endDate,
-                            nightCount,
-                            dayCount,
-                            adultsCount,
-                            childrenCount,
-                            fullAmount,
-                            Base64.getEncoder().encodeToString(paymentSlip.getBytes())
+       bookingService.saveBooking(bookingDTO);
+       return new ResponseUtil("ok","Successfully Booking...!",null);
 
-                    ));
-             return new ResponseUtil("ok","Successfully Booking...!",null);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
 //--------------------Update----------------------------------------------
 
     @PutMapping
-    public ResponseUtil updateBooking(        @RequestParam String bookingId,
-                                              @RequestParam String startDate,
-                                              @RequestParam String endDate,
-                                              @RequestParam String nightCount,
-                                              @RequestParam String dayCount,
-                                              @RequestParam String adultsCount,
-                                              @RequestParam String childrenCount,
-                                              @RequestParam double fullAmount,
-                                              @RequestParam String paymentSlip) {
-        if (paymentSlip.isEmpty()) {
-            throw new RuntimeException("Payment-slip is empty...!");
-        }
-        try {
-            BookingDTO bookingDTO = new BookingDTO(
-                    bookingId,
-                    startDate,
-                    endDate,
-                    nightCount,
-                    dayCount,
-                    adultsCount,
-                    childrenCount,
-                    fullAmount,
-                    Base64.getEncoder().encodeToString(paymentSlip.getBytes()));
-            bookingService.updateBooking(bookingDTO);
-            return new ResponseUtil("OK", "Successfully updated....!" + bookingDTO.getBookingId(), null);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseUtil updateBooking( @RequestBody BookingDTO bookingDTO) {
+        bookingService.updateBooking(bookingDTO);
+        return new ResponseUtil("OK", "Successfully saved...!" +bookingDTO.getBookingId(), null);
     }
 
 
 //---------------------Delete--------------------------------------
 
-    @DeleteMapping("id")
+    @DeleteMapping(params = {"id"})
     public ResponseUtil deleteBooking(String id) {
         bookingService.deleteBooking(id);
         return new ResponseUtil("OK","Successfully Deleted...!"+id,null);
@@ -108,23 +55,9 @@ public class BookingController {
 
 //----------------------Get All Details--------------------------------------------
 
-    @GetMapping
-    public ResponseEntity<List<BookingResponse>> getAllBooking() {
-        List<BookingResponse> bookingResponses = bookingService.getAllBooking().stream().map(e ->
-                new BookingResponse(
-                        e.getBookingId(),
-                        e.getStartDate(),
-                        e.getEndDate(),
-                        e.getNightCount(),
-                        e.getDayCount(),
-                        e.getAdultsCount(),
-                        e.getChildrenCount(),
-                        e.getFullAmount(),
-                        Base64.getDecoder().decode(e.getPaymentSlip())
-
-                )
-        ).collect(Collectors.toList());
-        return new ResponseEntity<>(bookingResponses, HttpStatus.OK);
+    @GetMapping("/loadPackages")
+    public ResponseUtil getAllBooking() {
+        return new ResponseUtil("Ok","Successfully",bookingService.getAllBooking());
     }
 
 
@@ -142,7 +75,23 @@ public class BookingController {
     public @ResponseBody CustomDTO getBookingCount() {
         return bookingService.getAllBookingCount();
     }
+
+    //-------------------get booking by user id---------
+    @GetMapping(params = "userId",path = "/getBookingByUserId")
+    public ResponseEntity<BookingResponse> getBookingByUserId(String userId){
+        return new ResponseEntity<>(bookingService.getBookingByUserId(userId),HttpStatus.OK);
+    }
+
+    //-----------get booking ids using user id--------------------
+    @GetMapping(params = "userId",path = "/getBookingIdsByUserId")
+    public ResponseEntity<List<String>> getBookingIdsByUserId(String userId){
+        List<String> bookingIds = null;
+        List<BookingResponse> bookingsByUserId = bookingService.getBookingsByUserId(userId);
+        for(BookingResponse bookingGetDTO : bookingsByUserId){
+            bookingIds.add(bookingGetDTO.getBookingId());
+        }
+        return new ResponseEntity<>(bookingIds,HttpStatus.OK);
+    }
 }
 
-    //---------------------------------------------------------
 

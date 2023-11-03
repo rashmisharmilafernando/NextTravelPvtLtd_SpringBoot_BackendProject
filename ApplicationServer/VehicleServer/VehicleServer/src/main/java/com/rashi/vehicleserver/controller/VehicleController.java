@@ -142,23 +142,18 @@ public class VehicleController {
     }
 
     //------- Auto Generate id--------------------------
-    /*@ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/autoGenerateId")
     public @ResponseBody CustomDTO vehicleGenerate() {
         System.out.println("autoGenerateId");
         return vehicleService.vehicleIdGenerate();
-    }*/
-    @GetMapping(path = "/getLastId")
-    public ResponseEntity<String> vehicleGenerate() {
-        System.out.println("autoGenerateId");
-        return new ResponseEntity<>(vehicleService.vehicleIdGenerate(),HttpStatus.OK);
     }
 
     //-------Vehicle-Count------------------------------
 
-    @GetMapping(path = "/getCountOfVehicles")
-    public ResponseEntity<Integer>  getSumVehicle() {
-        return new ResponseEntity<>(vehicleService.getAllVehicleCount(),HttpStatus.OK);
+    @GetMapping(path = "/vehiclesCount")
+    public @ResponseBody CustomDTO getSumVehicle() {
+        return vehicleService.getAllVehicleCount();
     }
 
     //-------Filter Vehicle details according to packageName------------------------------

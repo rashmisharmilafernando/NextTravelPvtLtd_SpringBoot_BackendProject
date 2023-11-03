@@ -138,14 +138,25 @@ public class HotelController {
 
     //---------------------------Filter hotel details-----------------------------
    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/filterHotel", params = {"startRate", "locations"})
-    public ResponseEntity<List<HotelDTO>> filterHotelDetails(@RequestParam String startRate, @RequestParam String location) {
-      return new ResponseEntity<>(hotelService.getAllHotelByStarRateAndLocation(startRate,location),HttpStatus.OK);
+    @GetMapping(path = "/filterHotel", params = {"hotelCategory","startRate", "locations"})
+    public ResponseEntity<List<HotelDTO>> filterHotelDetails(@RequestParam String hotelCategory,@RequestParam String startRate, @RequestParam String location) {
+      return new ResponseEntity<>(hotelService.getAllHotelByStarRateAndLocation(hotelCategory,startRate,location),HttpStatus.OK);
     }
 
     //--------------------------Filter hotels details according to packages---------------------------------------
     @GetMapping(path = "/getAllHotelsByPackage",params = "packageCategory")
     public ResponseEntity<List<HotelDTO>> getAllHotelByPackage(String packageCategory){
         return new ResponseEntity<>(hotelService.getAllHotelByPackage(packageCategory),HttpStatus.OK);
+    }
+
+    //-----------------------get all hotel ids------------------------
+    @GetMapping(path = "/getAllHotelIds")
+    public ResponseEntity<List<String>> getAllHotelIds(){
+        List<String> hotelIds = null;
+        List<HotelDTO> allHotels = hotelService.getAllHotels();
+        for(HotelDTO hotelDTO : allHotels){
+            hotelIds.add(hotelDTO.getHotelId());
+        }
+        return new ResponseEntity<>(hotelIds,HttpStatus.OK);
     }
 }

@@ -2,6 +2,7 @@ package lk.ijse.packageserver.server.impl;
 
 import lk.ijse.packageserver.dao.BookingDAO;
 import lk.ijse.packageserver.dto.BookingDTO;
+import lk.ijse.packageserver.dto.BookingResponse;
 import lk.ijse.packageserver.dto.CustomDTO;
 import lk.ijse.packageserver.dto.PackageDTO;
 import lk.ijse.packageserver.enetity.BookingEntity;
@@ -56,7 +57,14 @@ public class BookingServiceIMPL implements BookingService {
     }
 
     @Override
-    public PackageDTO getPackageById(String packageId) {
-        return null;
+    public BookingResponse getBookingByUserId(String userId) {
+        return dataConvertor.bookingEntityToBookingGetDto(bookingDAO.findBookingByUserId(userId));
     }
+
+    @Override
+    public List<BookingResponse> getBookingsByUserId(String userId) {
+        return dataConvertor.bookingEntityListToBookingGetDTOList(bookingDAO.findBookingsByUserId(userId));
+    }
+
+
 }

@@ -70,12 +70,12 @@ public class HotelServiceIMPL implements HotelService{
     }
 
     @Override
-    public List<HotelDTO> getAllHotelByStarRateAndLocation(String startRate, String location) {
+    public List<HotelDTO> getAllHotelByStarRateAndLocation(String hotelCategory,String startRate, String location) {
         if (!hotelDAO.existsByStarRate(startRate))
             throw new RuntimeException(startRate+" Start Rate Category not exists");
         if (!hotelDAO.existsByLocation(location))
             throw new RuntimeException(startRate+" Location not exists");
-        return dataTypeConversion.hotelDTOListToHotelDTOList(hotelDAO.findAllByStarRateAndHotelLocation(startRate,location));
+        return dataTypeConversion.hotelDTOListToHotelDTOList(hotelDAO.findAllByHotelCategoryStarRateAndHotelLocation(hotelCategory,startRate,location));
     }
 
     @Override
@@ -83,6 +83,11 @@ public class HotelServiceIMPL implements HotelService{
             if (!hotelDAO.existByPackage(packageCategory))
                 throw new RuntimeException(packageCategory+ "Package not exists");
             return dataTypeConversion.hotelDTOListToHotelDTOList(hotelDAO.findAllByPackage(packageCategory));
+    }
+
+    @Override
+    public List<HotelDTO> getAllHotels() {
+        return dataTypeConversion.hotelEntityListToHotelDTOList(hotelDAO.findAll());
     }
 
 }
