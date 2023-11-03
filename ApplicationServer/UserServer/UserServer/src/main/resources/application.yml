@@ -12,7 +12,7 @@ eureka:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/NextTravelUserDataBase?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/NextTravelUsersDataBase?createDatabaseIfNotExist=true
     username: root
     password: 1234
 

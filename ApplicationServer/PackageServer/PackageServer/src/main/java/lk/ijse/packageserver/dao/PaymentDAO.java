@@ -1,4 +1,4 @@
-package lk.ijse.packageserver.server.dao;
+package lk.ijse.packageserver.dao;
 
 import lk.ijse.packageserver.dto.ReportDTO;
 import lk.ijse.packageserver.enetity.PaymentEntity;

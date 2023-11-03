@@ -14,7 +14,7 @@ public interface BookingDAO extends JpaRepository<BookingEntity,String> {
     @Query(value = "SELECT COUNT(bookingId) FROM booking", nativeQuery = true)
     String getAllBookingCount();
 
-   BookingEntity findBookingByUserId(String userId);
+   BookingEntity findBookingEntityByUserId(String userId);
 
 
     List<BookingEntity> findBookingsByUserId(String userId);

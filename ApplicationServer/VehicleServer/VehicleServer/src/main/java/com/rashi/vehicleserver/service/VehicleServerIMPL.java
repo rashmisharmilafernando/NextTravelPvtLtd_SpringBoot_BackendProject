@@ -31,9 +31,6 @@ public class VehicleServerIMPL implements VehicleService{
 
     @Override
     public void updateVehicle(VehicleDTO vehicleDTO) {
-        if (!vehicleDAO.existsById(vehicleDTO.getVehicleId())){
-            throw new RuntimeException("Vehicle not Exist...!");
-        }
         vehicleDAO.save(dataTypeConvertor.getVehicleEntity(vehicleDTO));
     }
 

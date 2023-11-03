@@ -15,7 +15,7 @@ import java.util.Base64;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin("*")
 @RequestMapping("api/v1/Vehicle")
 public class VehicleController {
 
@@ -78,7 +78,7 @@ public class VehicleController {
     }
 
     //----------------------------------------Update------------------------------------
-    @PutMapping
+    @PutMapping(path = "/update")
     public ResponseUtil  UpdateVehicle(
             @RequestParam(value ="vehicleId") String vehicleId,
             @RequestParam(value ="vehicleRegId") String vehicleRegId,
@@ -136,7 +136,7 @@ public class VehicleController {
     //---------------Get All--------------------------------------------------
 
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping
+    @GetMapping(path = "/getAllDetails")
     public ResponseEntity<List<VehicleDTO>> getAllCar() {
         return new ResponseEntity<>(vehicleService.getAllVehicle(),HttpStatus.OK);
     }

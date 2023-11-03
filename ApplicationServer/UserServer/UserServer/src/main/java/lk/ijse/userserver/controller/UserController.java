@@ -15,6 +15,7 @@ import java.util.Base64;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1/user")
 public class UserController {
 
@@ -30,7 +31,7 @@ public class UserController {
             @RequestParam(value = "userId") String userId,
             @RequestParam(value = "name") String name,
             @RequestParam(value = "nic") String nic,
-            @RequestParam(value = "age") int age,
+            @RequestParam(value = "age") String age,
             @RequestParam(value = "gender") String gender,
             @RequestParam(value = "email") String email,
             @RequestParam(value = "password") String password,
@@ -38,9 +39,6 @@ public class UserController {
             @RequestParam(value = "contactNumber") String contactNumber,
             @RequestParam(value = "address") String address,
             @RequestParam(value = "profilePic") MultipartFile profilePic) {
-        if (profilePic.isEmpty()) {
-            throw new RuntimeException("profile Picture is empty...!");
-        }
         try {
             userservice.saveUser(new UsersDTO(
                     userId,
@@ -67,7 +65,7 @@ public class UserController {
             @RequestParam(value = "userId") String userId,
             @RequestParam(value = "name") String name,
             @RequestParam(value = "nic") String nic,
-            @RequestParam(value = "age") int age,
+            @RequestParam(value = "age") String age,
             @RequestParam(value = "gender") String gender,
             @RequestParam(value = "email") String email,
             @RequestParam(value = "password") String password,
@@ -117,7 +115,7 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/autoGenerateId")
-    public @ResponseBody CustomDTO vehicleGenerate() {
+    public @ResponseBody CustomDTO userGenerate() {
         System.out.println("autoGenerateId");
         return userservice.getLastIndex();
     }

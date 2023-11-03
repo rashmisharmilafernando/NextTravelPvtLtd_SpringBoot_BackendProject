@@ -2,9 +2,8 @@ package lk.ijse.packageserver.server.impl;
 
 import lk.ijse.packageserver.dto.PaymentDTO;
 import lk.ijse.packageserver.dto.ReportDTO;
-import lk.ijse.packageserver.server.PackageService;
 import lk.ijse.packageserver.server.PaymentService;
-import lk.ijse.packageserver.server.dao.PaymentDAO;
+import lk.ijse.packageserver.dao.PaymentDAO;
 import lk.ijse.packageserver.util.DataConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class PaymentServiceIMPL implements PaymentService {
     public void savePayment(PaymentDTO paymentDTO) {
         if (paymentDAO.existsById(paymentDTO.getBookingId()))
             throw new RuntimeException(paymentDTO.getBookingId()+" Payment is already exists..!!");
-       paymentDAO.save(convertor.paymentDtoToPaymentEntity(paymentDTO));
+      // paymentDAO.save(convertor.paymentDtoToPaymentEntity(paymentDTO));
 
     }
 

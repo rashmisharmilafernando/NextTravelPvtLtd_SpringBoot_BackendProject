@@ -58,7 +58,7 @@ public class BookingServiceIMPL implements BookingService {
 
     @Override
     public BookingResponse getBookingByUserId(String userId) {
-        return dataConvertor.bookingEntityToBookingGetDto(bookingDAO.findBookingByUserId(userId));
+        return dataConvertor.bookingEntityToBookingGetDto(bookingDAO.findBookingEntityByUserId(userId));
     }
 
     @Override

@@ -12,12 +12,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Table(name = "User")
 public class UserEntity implements SuperEntity {
     @Id
     private String userId;
     private String name;
     private String nic;
-    private int age;
+    private String age;
     private String gender;
     private String email;
     private String password;
