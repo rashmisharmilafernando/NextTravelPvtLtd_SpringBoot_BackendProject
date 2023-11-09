@@ -25,5 +25,4 @@ public class BookingDTO {
     private int adultsCount;
     private int childrenCount;
 
-
 }

@@ -1,4 +1,4 @@
-package com.rashi.apigateway;
+package com.rashi.apigateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 @Configuration
-@CrossOrigin
 public class CorssConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
